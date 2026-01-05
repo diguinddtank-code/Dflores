@@ -113,7 +113,7 @@ const Wizard: React.FC = () => {
     window.open(`https://wa.me/5521987654321?text=${encodeURIComponent(message)}`, '_blank');
   };
 
-  // Variantes de animação reutilizáveis para consistência
+  // Variantes de animação
   const stepVariants = {
     initial: { opacity: 0, x: 20, scale: 0.95 },
     animate: { opacity: 1, x: 0, scale: 1 },
@@ -129,7 +129,13 @@ const Wizard: React.FC = () => {
       <div className="absolute bottom-0 right-0 w-96 h-96 bg-[#1A3C34]/5 rounded-full blur-3xl translate-x-1/3 translate-y-1/3 pointer-events-none" />
 
       <div className="container mx-auto px-6 max-w-5xl relative z-10">
-        <div className="text-center mb-16">
+        <motion.div 
+           initial={{ opacity: 0, y: 30 }}
+           whileInView={{ opacity: 1, y: 0 }}
+           viewport={{ once: true }}
+           transition={{ duration: 0.8 }}
+           className="text-center mb-16"
+        >
           <span className="text-[#D4AF37] uppercase tracking-[0.4em] text-[10px] font-bold block mb-4 flex items-center justify-center gap-2">
             <Sparkles size={12} /> Ateliê Digital
           </span>
@@ -137,9 +143,15 @@ const Wizard: React.FC = () => {
           <p className="mt-6 text-[#1A3C34]/60 font-light max-w-xl mx-auto text-lg">
             Uma experiência interativa para esboçar a atmosfera do seu próximo grande momento.
           </p>
-        </div>
+        </motion.div>
 
-        <div className="bg-white shadow-2xl border border-white/50 relative min-h-[500px] flex flex-col">
+        <motion.div 
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 1 }}
+          className="bg-white shadow-2xl border border-white/50 relative min-h-[500px] flex flex-col rounded-sm overflow-hidden"
+        >
           {/* Progress Bar */}
           <div className="w-full h-1 bg-[#FAF9F6] flex">
             <motion.div 
@@ -164,7 +176,7 @@ const Wizard: React.FC = () => {
                 
                 {/* Mobile Hint */}
                 <div className="md:hidden text-center mb-6 flex items-center justify-center gap-2 text-[#D4AF37] text-[10px] uppercase tracking-widest animate-pulse">
-                   <span>Deslize para escolher</span> <ArrowRight size={12} />
+                   <span>Deslize</span> <ArrowRight size={12} />
                 </div>
 
                 {/* Horizontal Scroll Container for Mobile / Grid for Desktop */}
@@ -172,10 +184,13 @@ const Wizard: React.FC = () => {
                   {WIZARD_DATA.events.map((ev, index) => {
                     const isSelected = selections.event === ev.label;
                     return (
-                      <button 
-                        key={ev.id} 
+                      <motion.button 
+                        key={ev.id}
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: index * 0.1 }}
                         onClick={() => handleSelection('event', ev.label, 2)} 
-                        className={`group relative min-w-[85vw] md:min-w-0 snap-center h-[400px] md:h-96 overflow-hidden cursor-pointer transition-all duration-500 rounded-sm ${isSelected ? 'ring-4 ring-[#D4AF37] ring-offset-2 shadow-2xl scale-[0.98] md:scale-[1.02]' : 'hover:shadow-xl md:hover:-translate-y-2'}`}
+                        className={`group relative min-w-[80vw] md:min-w-0 snap-center h-[400px] md:h-96 overflow-hidden cursor-pointer transition-all duration-500 rounded-sm ${isSelected ? 'ring-4 ring-[#D4AF37] ring-offset-2 shadow-2xl scale-[0.98] md:scale-[1.02]' : 'hover:shadow-xl md:hover:-translate-y-2'}`}
                       >
                         <img 
                           src={ev.img} 
@@ -200,7 +215,7 @@ const Wizard: React.FC = () => {
                              </div>
                           )}
                         </div>
-                      </button>
+                      </motion.button>
                     );
                   })}
                 </div>
@@ -228,11 +243,14 @@ const Wizard: React.FC = () => {
                 <button onClick={() => setStep(1)} className="absolute top-8 left-8 text-xs uppercase tracking-widest text-[#1A3C34]/40 hover:text-[#1A3C34]">← Voltar</button>
                 <h3 className="text-3xl font-serif text-[#1A3C34] text-center italic mb-12">Qual a alma do evento?</h3>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                  {WIZARD_DATA.vibes.map(v => {
+                  {WIZARD_DATA.vibes.map((v, i) => {
                     const isSelected = selections.vibe === v.label;
                     return (
-                      <button 
+                      <motion.button 
                         key={v.id} 
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: i * 0.1 }}
                         onClick={() => handleSelection('vibe', v.label, 3)} 
                         className="text-left group relative"
                       >
@@ -251,7 +269,7 @@ const Wizard: React.FC = () => {
                         </div>
                         <h4 className={`text-xl font-serif mb-2 transition-colors ${isSelected ? 'text-[#D4AF37]' : 'text-[#1A3C34] group-hover:text-[#D4AF37]'}`}>{v.label}</h4>
                         <p className="text-sm font-light text-[#1A3C34]/60 leading-relaxed">{v.description}</p>
-                      </button>
+                      </motion.button>
                     );
                   })}
                 </div>
@@ -286,7 +304,7 @@ const Wizard: React.FC = () => {
                   <button 
                     disabled={loading}
                     onClick={handleGenerate}
-                    className="bg-[#1A3C34] text-white px-12 py-5 text-xs uppercase tracking-[0.3em] font-bold flex items-center gap-4 hover:bg-[#D4AF37] transition-all duration-500 shadow-xl disabled:cursor-wait"
+                    className="bg-[#1A3C34] text-white px-12 py-5 text-xs uppercase tracking-[0.3em] font-bold flex items-center gap-4 hover:bg-[#D4AF37] transition-all duration-500 shadow-xl disabled:cursor-wait w-full md:w-auto justify-center"
                   >
                     {loading ? (
                       <div className="flex items-center gap-3">
@@ -364,7 +382,7 @@ const Wizard: React.FC = () => {
               </motion.div>
             )}
           </AnimatePresence>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

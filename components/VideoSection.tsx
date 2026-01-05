@@ -29,17 +29,23 @@ const VideoSection: React.FC = () => {
   return (
     <section id="video-experience" className="py-24 bg-[#FAF9F6]">
       <div className="container mx-auto px-6 max-w-6xl">
-        <div className="text-center mb-16">
+        <motion.div 
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+          className="text-center mb-16"
+        >
           <span className="text-[#D4AF37] uppercase tracking-[0.4em] text-[10px] font-bold block mb-4">Experiência Imersiva</span>
           <h2 className="text-4xl md:text-5xl font-serif text-[#1A3C34] italic">D'Flores em Movimento</h2>
           <div className="h-[1px] w-32 bg-[#D4AF37]/30 mx-auto mt-6" />
-        </div>
+        </motion.div>
 
         <motion.div 
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, ease: "easeOut" }}
-          viewport={{ once: true }}
+          initial={{ opacity: 0, scale: 0.95, y: 40 }}
+          whileInView={{ opacity: 1, scale: 1, y: 0 }}
+          transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
+          viewport={{ once: true, margin: "-100px" }}
           className="relative group bg-[#1A3C34] shadow-[0_40px_100px_-20px_rgba(0,0,0,0.3)] overflow-hidden"
         >
           {/* Decorative Border */}
@@ -93,7 +99,12 @@ const VideoSection: React.FC = () => {
           </div>
         </motion.div>
 
-        <div className="mt-12 grid md:grid-cols-3 gap-8 items-center">
+        <motion.div 
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ delay: 0.5, duration: 1 }}
+          className="mt-12 grid md:grid-cols-3 gap-8 items-center"
+        >
           <p className="text-[#1A3C34]/40 text-[10px] uppercase tracking-widest font-medium md:text-left text-center">
             Filme Institucional 2024
           </p>
@@ -112,7 +123,7 @@ const VideoSection: React.FC = () => {
               </div>
             </div>
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

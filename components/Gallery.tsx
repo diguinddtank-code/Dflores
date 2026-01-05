@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect, useMemo } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, Variants } from 'framer-motion';
 import { GALLERY_ITEMS } from '../constants';
 import { Maximize2, X, Calendar, Tag, Filter, ArrowUpDown } from 'lucide-react';
 import { GalleryItem } from '../types';
@@ -45,20 +45,47 @@ const Gallery: React.FC = () => {
     };
   }, [selectedItem]);
 
+  // Animation Variants
+  const containerVariants: Variants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.15
+      }
+    }
+  };
+
+  const itemVariants: Variants = {
+    hidden: { opacity: 0, y: 50 },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] }
+    },
+    exit: { opacity: 0, scale: 0.9, transition: { duration: 0.3 } }
+  };
+
   return (
     <section id="gallery" className="py-24 bg-[#FAF9F6]">
       <div className="container mx-auto px-6">
-        <div className="text-center mb-12">
+        <motion.div 
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+          className="text-center mb-12"
+        >
           <span className="text-[#D4AF37] uppercase tracking-[0.4em] text-[10px] font-bold block mb-4">Curadoria Exclusiva</span>
           <h2 className="text-3xl md:text-5xl font-serif text-[#1A3C34] mb-4 uppercase tracking-wider">Nossa Arte em Detalhes</h2>
           <div className="h-[1px] w-24 bg-[#D4AF37] mx-auto mb-6" />
           <p className="text-[#1A3C34]/60 max-w-2xl mx-auto font-light italic">
             Explore nossa curadoria de projetos reais. Cada árvore, cada arranjo é desenhado para criar uma atmosfera de puro encantamento.
           </p>
-        </div>
+        </motion.div>
 
         {/* Filter & Sort Bar */}
-        <div className="flex flex-col md:flex-row justify-between items-center mb-12 border-b border-[#1A3C34]/10 pb-6 gap-6">
+        <div className="flex flex-col md:flex-row justify-between items-center mb-12 border-b border-[#1A3C34]/10 pb-6 gap-6 sticky top-20 z-40 bg-[#FAF9F6]/95 backdrop-blur-sm md:static md:bg-transparent">
           <div className="flex flex-wrap justify-center gap-4 md:gap-8">
             {categories.map((cat) => (
               <button
@@ -93,6 +120,10 @@ const Gallery: React.FC = () => {
 
         <motion.div 
           layout
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-50px" }}
           className="columns-1 sm:columns-2 lg:columns-3 gap-6 space-y-6"
         >
           <AnimatePresence>
@@ -100,17 +131,14 @@ const Gallery: React.FC = () => {
               <motion.div
                 layout
                 key={item.id}
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.9 }}
-                transition={{ duration: 0.5 }}
+                variants={itemVariants}
                 onClick={() => setSelectedItem(item)}
-                className="relative group cursor-pointer overflow-hidden bg-white shadow-lg break-inside-avoid"
+                className="relative group cursor-pointer overflow-hidden bg-white shadow-lg break-inside-avoid rounded-sm"
               >
                 <img 
                   src={item.url} 
                   alt={item.title} 
-                  className="w-full h-auto grayscale-[30%] group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700 ease-in-out" 
+                  className="w-full h-auto grayscale-[20%] group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700 ease-in-out" 
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#1A3C34] via-[#1A3C34]/20 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 flex flex-col justify-end p-8">
                   <span className="text-[#D4AF37] text-[10px] uppercase tracking-[0.3em] font-bold mb-2 translate-y-4 group-hover:translate-y-0 transition-transform duration-500">{item.category}</span>
@@ -124,11 +152,16 @@ const Gallery: React.FC = () => {
           </AnimatePresence>
         </motion.div>
 
-        <div className="mt-20 text-center">
+        <motion.div 
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ delay: 0.5 }}
+          className="mt-20 text-center"
+        >
           <button className="border border-[#1A3C34]/20 text-[#1A3C34] px-12 py-4 uppercase tracking-[0.3em] text-[10px] font-bold hover:bg-[#1A3C34] hover:text-white transition-all duration-500">
             Carregar Mais Inspirações
           </button>
-        </div>
+        </motion.div>
       </div>
 
       {/* Gallery Modal Overlay */}
@@ -155,11 +188,11 @@ const Gallery: React.FC = () => {
               animate={{ scale: 1, opacity: 1, y: 0 }}
               exit={{ scale: 0.9, opacity: 0, y: 20 }}
               transition={{ type: "spring", damping: 25, stiffness: 200 }}
-              className="relative max-w-6xl w-full bg-white flex flex-col md:flex-row overflow-hidden shadow-[0_50px_100px_rgba(0,0,0,0.5)]"
+              className="relative max-w-6xl w-full bg-white flex flex-col md:flex-row overflow-hidden shadow-[0_50px_100px_rgba(0,0,0,0.5)] max-h-[90vh] md:max-h-auto overflow-y-auto md:overflow-y-visible"
               onClick={(e) => e.stopPropagation()}
             >
               {/* Image Section */}
-              <div className="w-full md:w-2/3 h-[50vh] md:h-[80vh] overflow-hidden bg-black">
+              <div className="w-full md:w-2/3 h-[40vh] md:h-[80vh] overflow-hidden bg-black sticky top-0 md:relative">
                 <img 
                   src={selectedItem.url} 
                   alt={selectedItem.title} 

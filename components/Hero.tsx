@@ -1,7 +1,8 @@
-
 import React from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion as m, useScroll, useTransform } from 'framer-motion';
 import { ChevronDown, ArrowRight } from 'lucide-react';
+
+const motion = m as any;
 
 const Hero: React.FC = () => {
   const { scrollY } = useScroll();

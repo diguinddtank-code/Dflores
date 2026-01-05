@@ -1,7 +1,8 @@
-
 import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, Send, ChevronRight } from 'lucide-react';
+import { motion as m, AnimatePresence } from 'framer-motion';
+import { Menu, X, ChevronRight } from 'lucide-react';
+
+const motion = m as any;
 
 const Navbar: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -21,11 +22,6 @@ const Navbar: React.FC = () => {
     { name: 'O Ateliê', href: '#atelier' },
     { name: 'Vídeo', href: '#video-experience' },
   ];
-
-  const scrollToContact = () => {
-    document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
-    setIsMobileMenuOpen(false);
-  };
 
   return (
     <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-700 ${isScrolled ? 'bg-[#1A3C34]/95 backdrop-blur-md py-4 shadow-xl' : 'bg-transparent py-6 md:py-8'}`}>
@@ -53,13 +49,6 @@ const Navbar: React.FC = () => {
               </a>
             ))}
           </div>
-          <button 
-            onClick={scrollToContact}
-            className="bg-[#D4AF37] text-white px-8 py-3 text-[10px] uppercase tracking-[0.3em] font-bold hover:bg-white hover:text-[#1A3C34] transition-all duration-500 flex items-center gap-2 group shadow-lg"
-          >
-            Solicitar Orçamento
-            <Send size={14} className="group-hover:translate-x-1 transition-transform" />
-          </button>
         </div>
 
         {/* Mobile Menu Toggle */}
@@ -84,7 +73,7 @@ const Navbar: React.FC = () => {
           >
             <div className="flex flex-col gap-8 h-full">
               <nav className="flex flex-col gap-6">
-                {menuItems.map((item, idx) => (
+                {menuItems.map((item: any, idx: number) => (
                   <motion.a 
                     key={item.name} 
                     href={item.href} 
@@ -101,21 +90,6 @@ const Navbar: React.FC = () => {
               </nav>
 
               <div className="mt-auto space-y-6">
-                 <motion.div 
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.4 }}
-                    className="space-y-4"
-                 >
-                  <p className="text-white/40 text-[10px] uppercase tracking-widest text-center">Vamos criar algo único?</p>
-                  <button 
-                    onClick={scrollToContact}
-                    className="w-full bg-[#D4AF37] text-white py-5 text-sm uppercase tracking-widest font-bold shadow-[0_10px_30px_rgba(212,175,55,0.2)]"
-                  >
-                    Orçamento Imediato
-                  </button>
-                </motion.div>
-
                 <motion.div 
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}

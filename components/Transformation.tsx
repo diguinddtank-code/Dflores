@@ -1,7 +1,8 @@
-
 import React, { useState, useRef, useEffect } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion as m, useScroll, useTransform } from 'framer-motion';
 import { MoveHorizontal, Sparkles } from 'lucide-react';
+
+const motion = m as any;
 
 const Transformation: React.FC = () => {
   const [sliderPosition, setSliderPosition] = useState(50);

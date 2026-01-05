@@ -1,9 +1,11 @@
-
 import React, { useState, useEffect, useMemo } from 'react';
-import { motion, AnimatePresence, Variants } from 'framer-motion';
+import { motion as m, AnimatePresence } from 'framer-motion';
 import { GALLERY_ITEMS } from '../constants';
 import { Maximize2, X, Calendar, Tag, Filter, ArrowUpDown } from 'lucide-react';
 import { GalleryItem } from '../types';
+
+const motion = m as any;
+type Variants = any;
 
 const Gallery: React.FC = () => {
   const [selectedItem, setSelectedItem] = useState<GalleryItem | null>(null);

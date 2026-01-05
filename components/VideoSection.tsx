@@ -1,7 +1,8 @@
-
 import React, { useRef, useState } from 'react';
-import { motion } from 'framer-motion';
+import { motion as m } from 'framer-motion';
 import { Play, Pause, Volume2, VolumeX } from 'lucide-react';
+
+const motion = m as any;
 
 const VideoSection: React.FC = () => {
   const videoRef = useRef<HTMLVideoElement>(null);

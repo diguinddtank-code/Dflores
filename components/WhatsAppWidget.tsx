@@ -1,7 +1,8 @@
-
 import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion as m, AnimatePresence } from 'framer-motion';
 import { X, Send, ChevronRight } from 'lucide-react';
+
+const motion = m as any;
 
 const VirtualConcierge: React.FC = () => {
   const [stage, setStage] = useState<'hidden' | 'typing' | 'active' | 'minimized'>('hidden');

@@ -1,4 +1,3 @@
-
 import React, { useEffect, useRef } from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
@@ -8,10 +7,12 @@ import Gallery from './components/Gallery';
 import VideoSection from './components/VideoSection';
 import Footer from './components/Footer';
 import VirtualConcierge from './components/WhatsAppWidget';
-import BudgetWidget from './components/BudgetWidget';
-import { motion, useScroll, useSpring, useTransform, Variants } from 'framer-motion';
+import { motion as m, useScroll, useSpring, useTransform } from 'framer-motion';
 import { TreePine, Flower, Send, Star } from 'lucide-react';
 import Lenis from 'lenis';
+
+const motion = m as any;
+type Variants = any;
 
 // Variantes de animação reutilizáveis para consistência visual
 const fadeInRight: Variants = {
@@ -239,7 +240,6 @@ const App: React.FC = () => {
       </motion.div>
 
       <VirtualConcierge />
-      <BudgetWidget />
     </div>
   );
 };

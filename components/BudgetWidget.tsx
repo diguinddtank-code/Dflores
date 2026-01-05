@@ -1,7 +1,8 @@
-
 import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion as m, AnimatePresence } from 'framer-motion';
 import { X, Send, Calculator, Calendar, User, ClipboardList, HelpCircle } from 'lucide-react';
+
+const motion = m as any;
 
 const Tooltip: React.FC<{ text: string }> = ({ text }) => (
   <div className="group relative inline-block ml-2">

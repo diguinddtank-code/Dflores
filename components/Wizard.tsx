@@ -1,8 +1,9 @@
-
 import React, { useState, useRef } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion as m, AnimatePresence } from 'framer-motion';
 import { Sparkles, Wand2, Loader2, Heart, Star, Flower2, Moon, Sun, MessageCircle, Image as ImageIcon, ChevronRight, Check, ArrowRight } from 'lucide-react';
 import { GoogleGenAI, Type } from "@google/genai";
+
+const motion = m as any;
 
 const WIZARD_DATA = {
   events: [
@@ -356,7 +357,7 @@ const Wizard: React.FC = () => {
                      <div className="space-y-4 mb-8">
                        <span className="text-[10px] uppercase tracking-widest text-[#1A3C34]/40 font-bold block">Paleta Cromática</span>
                        <div className="flex gap-4">
-                         {result.colors.map((c, i) => (
+                         {result.colors.map((c: string, i: number) => (
                            <motion.div 
                               key={i} 
                               initial={{ scale: 0 }} 

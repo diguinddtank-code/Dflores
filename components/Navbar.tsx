@@ -30,13 +30,17 @@ const Navbar: React.FC = () => {
         <motion.div 
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          className="relative z-[70] text-2xl font-serif tracking-[0.4em] font-light text-white cursor-pointer"
+          className="relative z-[70] cursor-pointer"
           onClick={() => {
             window.scrollTo({ top: 0, behavior: 'smooth' });
             setIsMobileMenuOpen(false);
           }}
         >
-          D'FLORES
+          <img 
+            src="https://i.imgur.com/APXOSOf.png" 
+            alt="D'FLORES" 
+            className="h-16 md:h-24 w-auto object-contain transition-transform hover:scale-105 duration-500"
+          />
         </motion.div>
 
         {/* Desktop Menu */}

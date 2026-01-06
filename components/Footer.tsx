@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Instagram, Facebook, Mail, MapPin, Phone } from 'lucide-react';
 
@@ -9,7 +8,11 @@ const Footer: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
           {/* Logo & About */}
           <div className="col-span-1 md:col-span-1">
-            <h2 className="text-3xl font-serif tracking-widest mb-6">D'FLORES</h2>
+            <img 
+              src="https://i.imgur.com/APXOSOf.png" 
+              alt="D'FLORES" 
+              className="h-28 mb-8 w-auto object-contain" 
+            />
             <p className="text-white/60 font-light leading-relaxed mb-8">
               Criando experiências visuais que transcendem o tempo. Especialistas em decorações de luxo para momentos que merecem ser eternos.
             </p>

@@ -58,7 +58,7 @@ const VideoSection: React.FC = () => {
             loop
             muted={isMuted}
             playsInline
-            poster="https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&q=80&w=1920"
+            poster="https://i.imgur.com/vPrh116.jpeg"
           >
             <source src="https://assets.mixkit.co/videos/preview/mixkit-wedding-altar-decorated-with-flowers-4417-large.mp4" type="video/mp4" />
             Seu navegador não suporta vídeos.

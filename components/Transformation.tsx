@@ -21,7 +21,7 @@ const Transformation: React.FC = () => {
   // Sketch Image: A artistic drawing representing the concept
   const sketchImage = "https://images.unsplash.com/photo-1543857778-c4a1a3e0b2eb?auto=format&fit=crop&q=80&w=1920"; 
   // Real Image: The actual luxury result
-  const realImage = "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=80&w=1920"; 
+  const realImage = "https://i.imgur.com/RvYM7IY.jpeg"; 
 
   const handleMove = (event: React.MouseEvent | React.TouchEvent | MouseEvent | TouchEvent) => {
     if (!containerRef.current) return;
@@ -61,27 +61,49 @@ const Transformation: React.FC = () => {
     <section 
       id="transformation-section" 
       ref={sectionRef} 
-      className="relative pb-32 pt-10 bg-[#0A1A16] overflow-hidden z-10"
+      className="relative pb-64 md:pb-80 pt-10 bg-[#0A1A16] overflow-hidden z-10"
     >
       {/* Elemento de conexão sutil */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1px] h-24 bg-gradient-to-b from-transparent via-[#D4AF37]/30 to-transparent" />
 
       <motion.div style={{ y: yContent }} className="container mx-auto px-6 mb-16 text-center relative z-10">
-        <div className="inline-flex items-center gap-2 mb-6 opacity-60">
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="inline-flex items-center gap-2 mb-6 opacity-60"
+        >
            <Sparkles size={12} className="text-[#D4AF37]" />
            <span className="text-[#D4AF37] uppercase tracking-[0.4em] text-[10px] font-bold">A Promessa D'Flores</span>
-        </div>
-        <h2 className="text-3xl md:text-5xl font-serif text-white italic leading-tight">Do Esboço à <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#D4AF37] to-[#F4EBD0]">Realidade</span></h2>
-        <p className="mt-6 text-white/50 font-light max-w-xl mx-auto text-lg leading-relaxed">
+        </motion.div>
+        
+        <motion.h2 
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+          className="text-3xl md:text-5xl font-serif text-white italic leading-tight"
+        >
+          Do Esboço à <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#D4AF37] to-[#F4EBD0]">Realidade</span>
+        </motion.h2>
+
+        <motion.p 
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 1, delay: 0.4 }}
+          className="mt-6 text-white/50 font-light max-w-xl mx-auto text-lg leading-relaxed"
+        >
           Arraste para ver como materializamos o imaginário. Onde o croqui do artista se torna uma estrutura monumental tangível.
-        </p>
+        </motion.p>
       </motion.div>
 
       <motion.div 
-        initial={{ opacity: 0, scale: 0.95 }}
-        whileInView={{ opacity: 1, scale: 1 }}
+        initial={{ opacity: 0, scale: 0.9, y: 50 }}
+        whileInView={{ opacity: 1, scale: 1, y: 0 }}
         transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
-        viewport={{ once: true, margin: "-100px" }}
+        viewport={{ once: true, margin: "-50px" }}
         ref={containerRef}
         className="relative w-full max-w-6xl mx-auto h-[50vh] md:h-[70vh] cursor-ew-resize select-none overflow-hidden shadow-[0_50px_100px_-20px_rgba(0,0,0,0.5)] border border-[#D4AF37]/10 rounded-sm"
         onMouseDown={handleMouseDown}
@@ -134,12 +156,16 @@ const Transformation: React.FC = () => {
       </motion.div>
       
       <div className="text-center mt-16">
-          <button 
+          <motion.button 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.6 }}
             onClick={() => document.getElementById('wizard')?.scrollIntoView({behavior:'smooth'})} 
             className="text-white/60 border-b border-[#D4AF37]/30 pb-1 text-[10px] uppercase tracking-[0.4em] hover:text-[#D4AF37] hover:border-[#D4AF37] transition-all duration-500"
           >
             Quero meu projeto exclusivo
-          </button>
+          </motion.button>
       </div>
     </section>
   );

@@ -4,6 +4,8 @@ import Hero from './components/Hero';
 import Transformation from './components/Transformation';
 import Wizard from './components/Wizard';
 import Gallery from './components/Gallery';
+import Process from './components/Process';
+import FAQ from './components/FAQ';
 import VideoSection from './components/VideoSection';
 import Footer from './components/Footer';
 import VirtualConcierge from './components/WhatsAppWidget';
@@ -101,11 +103,11 @@ const App: React.FC = () => {
       {/* Grupo Light: Atelier, Wizard, etc. Sobem como um card sobre o Dark */}
       <motion.div 
         style={{ y: whiteSectionY }}
-        className="relative z-10 -mt-24 md:-mt-32 bg-white rounded-t-[40px] md:rounded-t-[80px] shadow-[0_-50px_100px_rgba(0,0,0,0.5)] overflow-hidden"
+        className="relative z-10 -mt-24 md:-mt-32 bg-white rounded-t-[40px] md:rounded-t-[80px] shadow-[0_-50px_100px_rgba(0,0,0,0.5)]"
       >
         {/* Section: Atelier / Value Prop */}
-        <section id="atelier" ref={atelierRef} className="py-24 md:py-32 bg-white relative">
-          <div className="absolute top-0 right-0 w-1/3 h-full bg-[#FAF9F6] -z-10" />
+        <section id="atelier" ref={atelierRef} className="py-24 md:py-32 bg-white relative rounded-t-[40px] md:rounded-t-[80px]">
+          <div className="absolute top-0 right-0 w-1/3 h-full bg-[#FAF9F6] -z-10 rounded-tr-[40px] md:rounded-tr-[80px]" />
           
           {/* Elemento decorativo de transição */}
           <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-20 h-20 md:w-24 md:h-24 bg-white rounded-full flex items-center justify-center shadow-lg border border-[#D4AF37]/20 z-20">
@@ -160,7 +162,7 @@ const App: React.FC = () => {
                  className="relative z-10"
               >
                 <img 
-                  src="https://images.unsplash.com/photo-1544274411-a7af6de9a96d?auto=format&fit=crop&q=80&w=1000" 
+                  src="https://i.imgur.com/dE68d39.jpeg" 
                   className="w-full h-[400px] md:h-[600px] object-cover shadow-[0_50px_100px_-20px_rgba(26,60,52,0.3)]"
                   alt="Atelier"
                 />
@@ -171,8 +173,10 @@ const App: React.FC = () => {
           </div>
         </section>
 
+        <Process />
         <Wizard />
         <Gallery />
+        <FAQ />
         <VideoSection />
         
         {/* Section: Contact / Quote Form - Integrado ao final da área branca */}
@@ -189,7 +193,7 @@ const App: React.FC = () => {
             >
               
               <div className="md:col-span-2 relative min-h-[300px] md:min-h-full group overflow-hidden">
-                <div className="absolute inset-0 bg-cover bg-center transition-transform duration-1000 group-hover:scale-110 opacity-60" style={{ backgroundImage: "url('https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&q=80&w=800')" }} />
+                <div className="absolute inset-0 bg-cover bg-center transition-transform duration-1000 group-hover:scale-110 opacity-60" style={{ backgroundImage: "url('https://i.imgur.com/iLYsMuc.jpeg')" }} />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#0A1A16] to-transparent" />
                 <div className="absolute bottom-10 left-10 right-10">
                   <h3 className="text-4xl font-serif italic mb-3">Vamos conversar?</h3>

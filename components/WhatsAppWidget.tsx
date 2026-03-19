@@ -24,7 +24,7 @@ const VirtualConcierge: React.FC = () => {
   };
 
   const handleOpenChat = () => {
-    window.open("https://wa.me/5521987654321?text=Olá Ana! Vi o site da D'Flores e gostaria de verificar disponibilidade para meu evento.", "_blank");
+    window.open("https://wa.me/553175621548?text=Olá Ana! Vi o site da D'Flores e gostaria de verificar disponibilidade para meu evento.", "_blank");
     setStage('minimized');
   };
 

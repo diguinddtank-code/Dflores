@@ -104,7 +104,7 @@ const Navbar: React.FC = () => {
                   className="space-y-4"
                 >
                     <p className="text-[#D4AF37] text-xs uppercase tracking-widest font-bold">Contato Rápido</p>
-                    <p className="text-white/60 font-light">+55 (21) 98765-4321</p>
+                    <p className="text-white/60 font-light">+55 (31) 7562-1548</p>
                     <p className="text-white/60 font-light">contato@dflores.com.br</p>
                 </motion.div>
 

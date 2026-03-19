@@ -110,7 +110,7 @@ const Wizard: React.FC = () => {
 
   const contactConsultant = () => {
     const message = `Olá! Acabei de gerar o conceito "${result?.title}" no ateliê digital. Gostaria de saber como torná-lo real!`;
-    window.open(`https://wa.me/5521987654321?text=${encodeURIComponent(message)}`, '_blank');
+    window.open(`https://wa.me/553175621548?text=${encodeURIComponent(message)}`, '_blank');
   };
 
   const stepVariants = {

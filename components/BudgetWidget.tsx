@@ -66,6 +66,7 @@ const BudgetWidget: React.FC = () => {
                   <option>Casamento</option>
                   <option>15 Anos</option>
                   <option>Evento Social</option>
+                  <option>Evento Corporativo</option>
                 </select>
                 <div className="absolute right-0 top-3">
                   <Tooltip text="Cada celebração exige técnicas específicas; selecione para direcionarmos seu consultor especialista." />

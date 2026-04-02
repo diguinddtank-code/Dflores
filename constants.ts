@@ -10,7 +10,7 @@ export const COLORS = {
 export const GALLERY_ITEMS: GalleryItem[] = [
   {
     id: 1,
-    url: 'https://i.imgur.com/PA1YDG1.jpeg',
+    url: 'https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&q=80&w=1200',
     title: 'Altar Imersivo',
     category: 'Casamento'
   },

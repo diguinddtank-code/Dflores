@@ -1,20 +1,19 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { motion as m, AnimatePresence } from 'framer-motion';
-import { Sparkles, Wand2, Loader2, Heart, Star, Flower2, Moon, Sun, MessageCircle, Image as ImageIcon, ChevronRight, Check, ArrowRight } from 'lucide-react';
+import { Sparkles, Wand2, Loader2, Check, ArrowRight, ChevronLeft, Image as ImageIcon } from 'lucide-react';
 import { GoogleGenAI, Type } from "@google/genai";
 
 const motion = m as any;
 
 const WIZARD_DATA = {
   events: [
-    { id: 'wedding', label: 'Casamento', subtitle: 'A união de duas almas', img: 'https://i.imgur.com/8GhqEJW.jpeg' },
+    { id: 'wedding', label: 'Casamento', subtitle: 'A união de duas almas', img: 'https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&q=80&w=1200' },
     { id: 'debutante', label: '15 Anos', subtitle: 'O despertar da primavera', img: 'https://i.imgur.com/iLYsMuc.jpeg' },
-    { id: 'social', label: 'Corporativo', subtitle: 'Excelência e Prestígio', img: 'https://i.imgur.com/PA1YDG1.jpeg' },
   ],
   vibes: [
-    { id: 'classic', label: 'Royal Classic', image: 'https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&q=80&w=400', description: 'Onde a tradição encontra a opulência.' },
-    { id: 'boho', label: 'Boho Luxury', image: 'https://images.unsplash.com/photo-1507504031981-723e284297dc?auto=format&fit=crop&q=80&w=400', description: 'Natureza orgânica com acabamento premium.' },
-    { id: 'modern', label: 'Modern Art', image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=400', description: 'Minimalismo impactante e arquitetônico.' },
+    { id: 'classic', label: 'Royal Classic', image: 'https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&q=80&w=800', description: 'Onde a tradição encontra a opulência.' },
+    { id: 'boho', label: 'Boho Luxury', image: 'https://images.unsplash.com/photo-1507504031981-723e284297dc?auto=format&fit=crop&q=80&w=800', description: 'Natureza orgânica com acabamento premium.' },
+    { id: 'modern', label: 'Modern Art', image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=800', description: 'Minimalismo impactante e arquitetônico.' },
   ]
 };
 
@@ -49,7 +48,7 @@ const Wizard: React.FC = () => {
     setSelections(prev => ({ ...prev, [key]: value }));
     setTimeout(() => {
       setStep(nextStep);
-    }, 450);
+    }, 400);
   };
 
   const handleGenerate = async () => {
@@ -57,7 +56,7 @@ const Wizard: React.FC = () => {
     simulateLoadingSteps();
     
     try {
-      const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+      const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
       
       const textPrompt = `Atue como Diretor Criativo da D'Flores (Luxo Monumental).
       Crie um conceito para ${selections.event} estilo ${selections.vibe}.
@@ -113,278 +112,292 @@ const Wizard: React.FC = () => {
     window.open(`https://wa.me/553175621548?text=${encodeURIComponent(message)}`, '_blank');
   };
 
-  const stepVariants = {
-    initial: { opacity: 0, x: 20, scale: 0.95 },
-    animate: { opacity: 1, x: 0, scale: 1 },
-    exit: { opacity: 0, x: -20, scale: 0.95 },
-  };
-  
-  const transitionProps = { duration: 0.5, ease: [0.32, 0.72, 0, 1] as [number, number, number, number] };
-
   return (
-    <section id="wizard" className="py-20 md:py-24 bg-[#FAF9F6] border-t border-[#1A3C34]/5 relative overflow-hidden">
-      {/* Background Decorative Elements */}
-      <div className="absolute top-0 left-0 w-64 h-64 bg-[#D4AF37]/5 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2 pointer-events-none" />
-      <div className="absolute bottom-0 right-0 w-96 h-96 bg-[#1A3C34]/5 rounded-full blur-3xl translate-x-1/3 translate-y-1/3 pointer-events-none" />
-
-      <div className="container mx-auto px-4 md:px-6 max-w-5xl relative z-10">
+    <section id="wizard" className="py-20 md:py-32 bg-[#0A1A16] relative overflow-hidden text-white">
+      {/* Animated background elements */}
+      <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
         <motion.div 
-           initial={{ opacity: 0, y: 30 }}
-           whileInView={{ opacity: 1, y: 0 }}
-           viewport={{ once: true }}
-           transition={{ duration: 0.8 }}
-           className="text-center mb-10 md:mb-16"
+          animate={{ 
+            scale: [1, 1.2, 1],
+            opacity: [0.1, 0.2, 0.1]
+          }}
+          transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
+          className="absolute -top-[20%] -left-[10%] w-[50%] h-[50%] rounded-full bg-[#D4AF37] blur-[150px] opacity-20"
+        />
+        <motion.div 
+          animate={{ 
+            scale: [1, 1.5, 1],
+            opacity: [0.05, 0.15, 0.05]
+          }}
+          transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+          className="absolute bottom-[10%] -right-[10%] w-[60%] h-[60%] rounded-full bg-[#1A3C34] blur-[120px] opacity-40"
+        />
+      </div>
+
+      <div className="container mx-auto px-4 md:px-8 relative z-10 max-w-6xl">
+        {/* Header */}
+        <motion.div 
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+          className="text-center mb-12 md:mb-20"
         >
-          <span className="text-[#D4AF37] uppercase tracking-[0.4em] text-[10px] font-bold block mb-4 flex items-center justify-center gap-2">
-            <Sparkles size={12} /> Ateliê Digital
+          <span className="text-[#D4AF37] uppercase tracking-[0.4em] text-xs font-bold mb-6 flex items-center justify-center gap-3">
+            <Sparkles size={16} /> Ateliê Digital IA
           </span>
-          <h2 className="text-3xl md:text-6xl font-serif text-[#1A3C34] italic">Crie sua Assinatura</h2>
-          <p className="mt-4 md:mt-6 text-[#1A3C34]/60 font-light max-w-xl mx-auto text-base md:text-lg px-4">
-            Uma experiência interativa para esboçar a atmosfera do seu próximo grande momento.
+          <h2 className="text-4xl md:text-6xl font-serif italic mb-6">Crie sua Assinatura</h2>
+          <p className="text-white/60 font-light max-w-2xl mx-auto text-lg md:text-xl">
+            Uma experiência interativa guiada por inteligência artificial para esboçar a atmosfera do seu próximo grande momento.
           </p>
         </motion.div>
 
-        <motion.div 
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-          className="bg-white shadow-2xl border border-white/50 relative min-h-[500px] flex flex-col rounded-sm overflow-hidden"
-        >
-          {/* Progress Bar */}
-          <div className="w-full h-1 bg-[#FAF9F6] flex">
+        {/* Wizard Container */}
+        <div className="relative bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl overflow-hidden shadow-2xl min-h-[600px] flex flex-col">
+          {/* Progress Indicator */}
+          <div className="absolute top-0 left-0 w-full h-1 bg-white/5 z-50">
             <motion.div 
-              initial={{ width: 0 }} 
-              animate={{ width: `${(step / 4) * 100}%` }} 
-              className="h-full bg-[#D4AF37]" 
+              className="h-full bg-gradient-to-r from-[#D4AF37]/50 to-[#D4AF37]"
+              initial={{ width: 0 }}
+              animate={{ width: `${(step / 4) * 100}%` }}
+              transition={{ duration: 0.5, ease: "easeInOut" }}
             />
           </div>
-          
-          <AnimatePresence mode="wait">
-            {step === 1 && (
-              <motion.div 
-                key="s1" 
-                variants={stepVariants}
-                initial="initial"
-                animate="animate"
-                exit="exit"
-                transition={transitionProps}
-                className="p-6 md:p-16 flex-1 flex flex-col justify-center"
-              >
-                <h3 className="text-2xl md:text-3xl font-serif text-[#1A3C34] text-center italic mb-4 md:mb-12">O que vamos celebrar?</h3>
-                
-                {/* Mobile Hint */}
-                <div className="md:hidden text-center mb-6 flex items-center justify-center gap-2 text-[#D4AF37] text-[10px] uppercase tracking-widest animate-pulse opacity-70">
-                   <span>Deslize</span> <ArrowRight size={12} />
-                </div>
 
-                {/* Horizontal Scroll Container Optimized for Mobile with Peeking */}
-                <div className="flex md:grid md:grid-cols-3 gap-4 md:gap-6 overflow-x-auto md:overflow-visible snap-x snap-mandatory pb-8 md:pb-0 -mx-6 px-6 md:mx-0 md:px-0 scrollbar-hide items-stretch">
-                  {WIZARD_DATA.events.map((ev, index) => {
-                    const isSelected = selections.event === ev.label;
-                    return (
-                      <motion.button 
-                        key={ev.id}
-                        initial={{ opacity: 0, y: 50, scale: 0.9 }}
-                        whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: index * 0.15, duration: 0.6 }}
-                        onClick={() => handleSelection('event', ev.label, 2)} 
-                        className={`group relative min-w-[85vw] md:min-w-0 snap-center h-[400px] md:h-96 overflow-hidden cursor-pointer transition-all duration-500 rounded-sm ${isSelected ? 'ring-2 md:ring-4 ring-[#D4AF37] ring-offset-2 shadow-2xl scale-[0.98] md:scale-[1.02]' : 'hover:shadow-xl md:hover:-translate-y-2'}`}
-                      >
-                        <img 
-                          src={ev.img} 
-                          className={`absolute inset-0 w-full h-full object-cover transition-transform duration-700 ${isSelected ? 'scale-110 grayscale-0' : 'scale-100 md:group-hover:scale-110 md:grayscale md:group-hover:grayscale-0'}`} 
-                          alt={ev.label} 
-                        />
-                        {/* Overlay Gradients */}
-                        <div className={`absolute inset-0 transition-opacity duration-500 bg-gradient-to-t from-black/90 via-black/20 to-transparent ${isSelected ? 'opacity-90' : 'opacity-70 md:opacity-60 md:group-hover:opacity-80'}`} />
-                        
-                        <div className="absolute inset-0 p-8 flex flex-col justify-end items-center md:items-start text-white text-center md:text-left z-10">
-                          <div className="w-full">
-                                <span className={`text-3xl font-serif italic mb-2 block transition-all duration-500 ${isSelected ? 'text-[#D4AF37] translate-y-0' : 'text-white translate-y-2 md:translate-y-4 md:group-hover:translate-y-0'}`}>{ev.label}</span>
-                                <span className={`text-[10px] uppercase tracking-widest transition-opacity duration-500 delay-100 ${isSelected ? 'opacity-100 text-white/90' : 'opacity-80 md:opacity-0 md:group-hover:opacity-100'}`}>{ev.subtitle}</span>
+          <div className="flex-1 relative p-6 md:p-12 flex flex-col">
+            <AnimatePresence mode="wait">
+              {/* STEP 1 */}
+              {step === 1 && (
+                <motion.div 
+                  key="step1"
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -20 }}
+                  transition={{ duration: 0.5 }}
+                  className="flex-1 flex flex-col h-full"
+                >
+                  <h3 className="text-3xl md:text-4xl font-serif italic text-center mb-10">O que vamos celebrar?</h3>
+                  <div className="flex flex-col md:flex-row gap-6 flex-1 h-full">
+                    {WIZARD_DATA.events.map((ev, idx) => {
+                      const isSelected = selections.event === ev.label;
+                      return (
+                        <motion.button
+                          key={ev.id}
+                          onClick={() => handleSelection('event', ev.label, 2)}
+                          className={`group relative flex-1 rounded-xl overflow-hidden min-h-[250px] md:min-h-[400px] border transition-all duration-500 ${isSelected ? 'border-[#D4AF37] shadow-[0_0_30px_rgba(212,175,55,0.2)]' : 'border-white/10 hover:border-[#D4AF37]/50'}`}
+                          whileHover={{ scale: 0.98 }}
+                          whileTap={{ scale: 0.95 }}
+                        >
+                          <img 
+                            src={ev.img} 
+                            alt={ev.label} 
+                            className={`absolute inset-0 w-full h-full object-cover transition-transform duration-1000 ${isSelected ? 'scale-110 opacity-100' : 'group-hover:scale-110 opacity-60 group-hover:opacity-100'}`}
+                          />
+                          <div className={`absolute inset-0 bg-gradient-to-t from-[#0A1A16] via-[#0A1A16]/40 to-transparent transition-opacity duration-500 ${isSelected ? 'opacity-60' : 'opacity-80 group-hover:opacity-60'}`} />
+                          
+                          <div className="absolute inset-0 p-8 flex flex-col justify-end items-center text-center">
+                            <h4 className={`text-4xl md:text-5xl font-serif italic mb-3 transform transition-transform duration-500 ${isSelected ? 'text-[#D4AF37] translate-y-0' : 'text-white translate-y-4 group-hover:translate-y-0'}`}>{ev.label}</h4>
+                            <p className={`text-[#D4AF37] uppercase tracking-[0.3em] text-xs transform transition-all duration-500 delay-100 ${isSelected ? 'opacity-100 translate-y-0' : 'opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0'}`}>{ev.subtitle}</p>
                           </div>
                           
                           {isSelected && (
-                             <div className="absolute top-6 right-6 w-10 h-10 bg-[#D4AF37] rounded-full flex items-center justify-center text-[#1A3C34] shadow-lg animate-in zoom-in spin-in-90 duration-300">
-                               <Check size={20} />
-                             </div>
+                            <div className="absolute top-6 right-6 w-10 h-10 bg-[#D4AF37] rounded-full flex items-center justify-center text-[#0A1A16] shadow-lg animate-in zoom-in duration-300">
+                              <Check size={20} />
+                            </div>
                           )}
-                        </div>
-                      </motion.button>
-                    );
-                  })}
-                </div>
+                        </motion.button>
+                      );
+                    })}
+                  </div>
+                </motion.div>
+              )}
 
-                {/* Mobile Pagination Dots */}
-                <div className="md:hidden flex justify-center gap-2 mt-2">
-                   {WIZARD_DATA.events.map((_, idx) => (
-                      <div key={idx} className={`w-1.5 h-1.5 rounded-full transition-colors duration-300 ${selections.event === WIZARD_DATA.events[idx].label ? 'bg-[#D4AF37]' : 'bg-[#1A3C34]/20'}`} />
-                   ))}
-                </div>
+              {/* STEP 2 */}
+              {step === 2 && (
+                <motion.div 
+                  key="step2"
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -20 }}
+                  transition={{ duration: 0.5 }}
+                  className="flex-1 flex flex-col"
+                >
+                  <button onClick={() => setStep(1)} className="absolute top-6 left-6 md:top-12 md:left-12 text-white/50 hover:text-white flex items-center gap-2 transition-colors z-20">
+                    <ChevronLeft size={20} /> <span className="text-xs uppercase tracking-widest hidden md:inline">Voltar</span>
+                  </button>
+                  <h3 className="text-3xl md:text-4xl font-serif italic text-center mb-10 mt-10 md:mt-0">Qual a alma do evento?</h3>
+                  
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6 flex-1">
+                    {WIZARD_DATA.vibes.map((vibe, idx) => {
+                      const isSelected = selections.vibe === vibe.label;
+                      return (
+                        <motion.button
+                          key={vibe.id}
+                          onClick={() => handleSelection('vibe', vibe.label, 3)}
+                          initial={{ opacity: 0, y: 20 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ delay: idx * 0.15, duration: 0.5 }}
+                          className={`group relative rounded-xl overflow-hidden min-h-[200px] md:min-h-full border transition-all duration-500 ${isSelected ? 'border-[#D4AF37] shadow-[0_0_30px_rgba(212,175,55,0.2)]' : 'border-white/10 hover:border-[#D4AF37]/50'}`}
+                        >
+                          <img 
+                            src={vibe.image} 
+                            alt={vibe.label} 
+                            className={`absolute inset-0 w-full h-full object-cover transition-transform duration-1000 ${isSelected ? 'scale-110 opacity-80' : 'group-hover:scale-110 opacity-50 group-hover:opacity-80'}`}
+                          />
+                          <div className={`absolute inset-0 bg-gradient-to-t from-[#0A1A16] to-transparent transition-opacity duration-500 ${isSelected ? 'opacity-70' : 'opacity-90'}`} />
+                          
+                          <div className="absolute inset-0 p-6 flex flex-col justify-end text-left">
+                            <h4 className="text-2xl md:text-3xl font-serif italic text-[#D4AF37] mb-2">{vibe.label}</h4>
+                            <p className={`text-white/70 text-sm font-light leading-relaxed transform transition-all duration-500 ${isSelected ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100'}`}>{vibe.description}</p>
+                          </div>
 
-              </motion.div>
-            )}
+                          {isSelected && (
+                            <div className="absolute top-4 right-4 w-8 h-8 bg-[#D4AF37] rounded-full flex items-center justify-center text-[#0A1A16] shadow-lg animate-in zoom-in duration-300">
+                              <Check size={16} />
+                            </div>
+                          )}
+                        </motion.button>
+                      );
+                    })}
+                  </div>
+                </motion.div>
+              )}
 
-            {step === 2 && (
-              <motion.div 
-                key="s2" 
-                variants={stepVariants}
-                initial="initial"
-                animate="animate"
-                exit="exit"
-                transition={transitionProps}
-                className="p-6 md:p-16 flex-1 flex flex-col justify-center"
-              >
-                <button onClick={() => setStep(1)} className="absolute top-6 left-6 md:top-8 md:left-8 text-xs uppercase tracking-widest text-[#1A3C34]/40 hover:text-[#1A3C34] p-2">← Voltar</button>
-                <h3 className="text-2xl md:text-3xl font-serif text-[#1A3C34] text-center italic mb-8 md:mb-12 mt-8 md:mt-0">Qual a alma do evento?</h3>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-8 pb-8">
-                  {WIZARD_DATA.vibes.map((v, i) => {
-                    const isSelected = selections.vibe === v.label;
-                    return (
-                      <motion.button 
-                        key={v.id} 
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: i * 0.1 }}
-                        onClick={() => handleSelection('vibe', v.label, 3)} 
-                        className="text-left group relative"
-                      >
-                        <div className={`overflow-hidden aspect-[3/2] md:aspect-[3/4] mb-4 md:mb-6 relative transition-all duration-300 rounded-sm ${isSelected ? 'ring-4 ring-[#D4AF37] ring-offset-2 shadow-2xl scale-[1.02]' : ''}`}>
-                           <img 
-                             src={v.image} 
-                             alt={v.label} 
-                             className={`w-full h-full object-cover transition-transform duration-700 ${isSelected ? 'scale-110' : 'group-hover:scale-105'}`} 
-                           />
-                           <div className={`absolute inset-0 transition-colors duration-500 mix-blend-overlay ${isSelected ? 'bg-[#D4AF37]/30' : 'bg-[#D4AF37]/0 group-hover:bg-[#D4AF37]/20'}`} />
-                           {isSelected && (
-                             <div className="absolute top-4 right-4 w-8 h-8 bg-[#D4AF37] rounded-full flex items-center justify-center text-[#1A3C34] shadow-lg animate-in zoom-in">
-                               <Check size={16} />
-                             </div>
-                           )}
-                           <div className="absolute bottom-0 left-0 w-full p-4 bg-gradient-to-t from-black/60 to-transparent md:hidden">
-                              <span className="text-white font-serif text-lg">{v.label}</span>
-                           </div>
-                        </div>
-                        <div className="hidden md:block">
-                            <h4 className={`text-xl font-serif mb-2 transition-colors ${isSelected ? 'text-[#D4AF37]' : 'text-[#1A3C34] group-hover:text-[#D4AF37]'}`}>{v.label}</h4>
-                            <p className="text-sm font-light text-[#1A3C34]/60 leading-relaxed">{v.description}</p>
-                        </div>
-                      </motion.button>
-                    );
-                  })}
-                </div>
-              </motion.div>
-            )}
+              {/* STEP 3 */}
+              {step === 3 && (
+                <motion.div 
+                  key="step3"
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -20 }}
+                  transition={{ duration: 0.5 }}
+                  className="flex-1 flex flex-col items-center justify-center max-w-3xl mx-auto w-full"
+                >
+                  <button onClick={() => setStep(2)} className="absolute top-6 left-6 md:top-12 md:left-12 text-white/50 hover:text-white flex items-center gap-2 transition-colors z-20">
+                    <ChevronLeft size={20} /> <span className="text-xs uppercase tracking-widest hidden md:inline">Voltar</span>
+                  </button>
+                  
+                  <h3 className="text-3xl md:text-4xl font-serif italic text-center mb-4 mt-10 md:mt-0">O toque final</h3>
+                  <p className="text-white/50 text-center mb-10">Descreva algum desejo específico. Uma cor, uma flor, uma sensação...</p>
 
-            {step === 3 && (
-              <motion.div 
-                key="s3" 
-                variants={stepVariants}
-                initial="initial"
-                animate="animate"
-                exit="exit"
-                transition={transitionProps}
-                className="p-6 md:p-16 flex-1 flex flex-col justify-center items-center"
-              >
-                <button onClick={() => setStep(2)} className="absolute top-6 left-6 md:top-8 md:left-8 text-xs uppercase tracking-widest text-[#1A3C34]/40 hover:text-[#1A3C34] p-2">← Voltar</button>
-                <h3 className="text-2xl md:text-3xl font-serif text-[#1A3C34] text-center italic mb-4 mt-8 md:mt-0">O toque final</h3>
-                <p className="text-[#1A3C34]/50 font-light mb-8 text-center max-w-md text-sm md:text-base">Descreva algum desejo específico. Uma cor, uma flor, uma sensação...</p>
-                
-                <div className="w-full max-w-2xl relative">
-                  <textarea 
-                    className="w-full h-40 md:h-48 p-6 md:p-8 bg-[#FAF9F6] border border-[#1A3C34]/10 focus:outline-none focus:border-[#D4AF37] focus:ring-1 focus:ring-[#D4AF37]/50 font-serif text-lg md:text-xl italic text-[#1A3C34] resize-none transition-all rounded-sm"
-                    placeholder="Sonho com uma entrada repleta de velas e uma árvore branca monumental..."
-                    value={selections.preferences}
-                    onChange={(e) => setSelections({...selections, preferences: e.target.value})}
-                  />
-                  <div className="absolute bottom-4 right-4 text-[10px] text-[#1A3C34]/30 uppercase tracking-widest">D'Flores AI Studio</div>
-                </div>
+                  <div className="w-full relative group">
+                    <div className="absolute -inset-1 bg-gradient-to-r from-[#D4AF37]/0 via-[#D4AF37]/30 to-[#D4AF37]/0 rounded-xl blur opacity-25 group-hover:opacity-50 transition duration-1000 group-hover:duration-200" />
+                    <textarea 
+                      value={selections.preferences}
+                      onChange={(e) => setSelections(prev => ({ ...prev, preferences: e.target.value }))}
+                      placeholder="Ex: Sonho com uma entrada repleta de velas e uma árvore branca monumental..."
+                      className="relative w-full h-48 bg-[#0A1A16]/80 border border-white/20 rounded-xl p-6 text-white placeholder:text-white/30 focus:outline-none focus:border-[#D4AF37] focus:ring-1 focus:ring-[#D4AF37] transition-all resize-none font-serif text-lg italic"
+                    />
+                  </div>
 
-                <div className="mt-8 md:mt-12 w-full flex justify-center">
-                  <button 
-                    disabled={loading}
+                  <motion.button
                     onClick={handleGenerate}
-                    className="bg-[#1A3C34] text-white px-8 md:px-12 py-4 md:py-5 text-xs uppercase tracking-[0.3em] font-bold flex items-center gap-4 hover:bg-[#D4AF37] transition-all duration-500 shadow-xl disabled:cursor-wait w-full md:w-auto justify-center rounded-sm"
+                    disabled={loading}
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                    className="mt-10 bg-gradient-to-r from-[#D4AF37] to-[#B49020] text-[#0A1A16] px-10 py-5 rounded-full font-bold uppercase tracking-[0.2em] text-sm flex items-center gap-4 hover:shadow-[0_0_30px_rgba(212,175,55,0.4)] transition-all duration-300 disabled:opacity-70 disabled:cursor-not-allowed w-full md:w-auto justify-center"
                   >
                     {loading ? (
-                      <div className="flex items-center gap-3">
-                         <Loader2 className="animate-spin" size={16} />
-                         <span>{loadingText}</span>
-                      </div>
+                      <>
+                        <Loader2 className="animate-spin" size={20} />
+                        {loadingText}
+                      </>
                     ) : (
                       <>
-                        Materializar Conceito <Wand2 size={16} />
+                        Materializar Conceito <Wand2 size={20} />
                       </>
                     )}
-                  </button>
-                </div>
-              </motion.div>
-            )}
+                  </motion.button>
+                </motion.div>
+              )}
 
-            {step === 4 && result && (
-              <motion.div 
-                key="s4" 
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.8, ease: "easeOut" }}
-                className="flex flex-col md:flex-row h-full min-h-[600px] md:min-h-auto"
-              >
-                <div className="w-full md:w-2/3 relative h-[300px] md:h-auto bg-[#1A3C34]">
-                   {result.imageUrl ? (
-                     <motion.img 
-                        initial={{ opacity: 0, scale: 1.1 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        transition={{ duration: 1.5 }}
-                        src={result.imageUrl} 
+              {/* STEP 4: RESULT */}
+              {step === 4 && result && (
+                <motion.div 
+                  key="step4"
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.8 }}
+                  className="flex-1 flex flex-col md:flex-row gap-8 md:gap-12"
+                >
+                  {/* Image Reveal */}
+                  <div className="w-full md:w-1/2 relative rounded-2xl overflow-hidden bg-[#0A1A16] border border-white/10 min-h-[300px] md:min-h-full flex items-center justify-center group">
+                    {result.imageUrl ? (
+                      <motion.img 
+                        initial={{ scale: 1.2, filter: 'blur(10px)' }}
+                        animate={{ scale: 1, filter: 'blur(0px)' }}
+                        transition={{ duration: 1.5, ease: "easeOut" }}
+                        src={result.imageUrl}
+                        alt={result.title}
                         className="absolute inset-0 w-full h-full object-cover"
-                     />
-                   ) : (
-                     <div className="absolute inset-0 flex items-center justify-center text-white/20"><ImageIcon size={48} /></div>
-                   )}
-                   <div className="absolute bottom-0 left-0 w-full h-1/2 bg-gradient-to-t from-black/80 to-transparent" />
-                   <div className="absolute bottom-6 left-6 right-6 md:bottom-8 md:left-8 md:right-8 text-white">
-                      <div className="inline-block px-3 py-1 border border-[#D4AF37] text-[#D4AF37] text-[9px] uppercase tracking-widest font-bold mb-3 md:mb-4">Conceito Exclusivo</div>
-                      <h3 className="text-2xl md:text-5xl font-serif italic">{result.title}</h3>
-                   </div>
-                </div>
+                      />
+                    ) : (
+                      <ImageIcon size={48} className="text-white/20" />
+                    )}
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#0A1A16] via-transparent to-transparent opacity-80" />
+                    
+                    {/* Floating Particles Effect over image */}
+                    <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-1000 pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/stardust.png')] mix-blend-screen" />
+                  </div>
 
-                <div className="w-full md:w-1/3 p-6 md:p-10 bg-white flex flex-col justify-between border-l border-[#1A3C34]/5 flex-1">
-                   <div>
-                     <h4 className="text-[#D4AF37] text-xs uppercase tracking-[0.2em] font-bold mb-4 md:mb-6 flex items-center gap-2"><Sparkles size={14}/> Curadoria IA</h4>
-                     <p className="font-serif text-[#1A3C34] text-base md:text-lg leading-relaxed italic mb-6 md:mb-8">"{result.description}"</p>
-                     
-                     <div className="space-y-4 mb-8">
-                       <span className="text-[10px] uppercase tracking-widest text-[#1A3C34]/40 font-bold block">Paleta Cromática</span>
-                       <div className="flex gap-3 md:gap-4">
-                         {result.colors.map((c: string, i: number) => (
-                           <motion.div 
-                              key={i} 
-                              initial={{ scale: 0 }} 
-                              animate={{ scale: 1 }} 
-                              transition={{ delay: i * 0.1 }}
-                              className="w-10 h-10 md:w-12 md:h-12 rounded-full shadow-lg border-2 border-white ring-1 ring-[#1A3C34]/10" 
-                              style={{ backgroundColor: c }} 
-                           />
-                         ))}
-                       </div>
-                     </div>
-                   </div>
+                  {/* Content Reveal */}
+                  <div className="w-full md:w-1/2 flex flex-col justify-center py-6">
+                    <motion.div
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.5, duration: 0.8 }}
+                    >
+                      <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-[#D4AF37]/30 text-[#D4AF37] text-xs uppercase tracking-widest mb-6">
+                        <Sparkles size={14} /> Conceito Exclusivo
+                      </span>
+                      <h3 className="text-4xl md:text-5xl font-serif italic text-white mb-6 leading-tight">{result.title}</h3>
+                      <p className="text-white/70 text-lg font-light leading-relaxed mb-10">"{result.description}"</p>
 
-                   <div className="space-y-4">
-                     <button onClick={contactConsultant} className="w-full bg-[#1A3C34] text-white py-4 text-[10px] uppercase tracking-[0.2em] font-bold hover:bg-[#D4AF37] transition-all shadow-lg flex justify-center items-center gap-3 rounded-sm">
-                       Solicitar Orçamento <ChevronRight size={14} />
-                     </button>
-                     <button onClick={() => setStep(1)} className="w-full py-3 text-[10px] uppercase tracking-widest text-[#1A3C34]/40 hover:text-[#1A3C34] transition-colors">
-                       Criar Novo Conceito
-                     </button>
-                   </div>
-                </div>
-              </motion.div>
-            )}
-          </AnimatePresence>
-        </motion.div>
+                      <div className="mb-12">
+                        <h4 className="text-xs uppercase tracking-[0.2em] text-white/40 mb-4">Paleta Cromática</h4>
+                        <div className="flex gap-4">
+                          {result.colors.map((color: string, i: number) => (
+                            <motion.div
+                              key={i}
+                              initial={{ scale: 0, rotate: -45 }}
+                              animate={{ scale: 1, rotate: 0 }}
+                              transition={{ delay: 0.8 + (i * 0.1), type: "spring" }}
+                              className="w-12 h-12 rounded-full shadow-2xl border-2 border-white/10 relative group cursor-pointer"
+                              style={{ backgroundColor: color }}
+                            >
+                              <div className="absolute -top-8 left-1/2 -translate-x-1/2 bg-black/80 text-white text-[10px] px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
+                                {color}
+                              </div>
+                            </motion.div>
+                          ))}
+                        </div>
+                      </div>
+
+                      <div className="flex flex-col sm:flex-row gap-4">
+                        <button 
+                          onClick={contactConsultant}
+                          className="flex-1 bg-[#D4AF37] text-[#0A1A16] px-8 py-4 rounded-sm font-bold uppercase tracking-widest text-xs flex items-center justify-center gap-3 hover:bg-white transition-colors"
+                        >
+                          Tornar Realidade <ArrowRight size={16} />
+                        </button>
+                        <button 
+                          onClick={() => {
+                            setStep(1);
+                            setResult(null);
+                            setSelections({ event: '', vibe: '', preferences: '' });
+                          }}
+                          className="flex-1 border border-white/20 text-white px-8 py-4 rounded-sm font-bold uppercase tracking-widest text-xs hover:bg-white/10 transition-colors"
+                        >
+                          Novo Conceito
+                        </button>
+                      </div>
+                    </motion.div>
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
+        </div>
       </div>
     </section>
   );

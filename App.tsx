@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
-import Transformation from './components/Transformation';
+import AnimatedShowcase from './components/AnimatedShowcase';
 import Wizard from './components/Wizard';
 import Gallery from './components/Gallery';
 import Process from './components/Process';
@@ -94,10 +94,10 @@ const App: React.FC = () => {
 
       <Navbar />
       
-      {/* Grupo Dark: Hero e Transformation fluem juntos */}
+      {/* Grupo Dark: Hero e AnimatedShowcase fluem juntos */}
       <div className="relative z-0">
         <Hero />
-        <Transformation />
+        <AnimatedShowcase />
       </div>
 
       {/* Grupo Light: Atelier, Wizard, etc. Sobem como um card sobre o Dark */}

@@ -19,9 +19,9 @@ const Transformation: React.FC = () => {
   const yContent = useTransform(scrollYProgress, [0, 1], [0, -50]);
 
   // Sketch Image: A artistic drawing representing the concept
-  const sketchImage = "https://images.unsplash.com/photo-1543857778-c4a1a3e0b2eb?auto=format&fit=crop&q=80&w=1920"; 
+  const sketchImage = "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=80&w=1920"; 
   // Real Image: The actual luxury result
-  const realImage = "https://i.imgur.com/RvYM7IY.jpeg"; 
+  const realImage = "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=80&w=1920"; 
 
   const handleMove = (event: React.MouseEvent | React.TouchEvent | MouseEvent | TouchEvent) => {
     if (!containerRef.current) return;
@@ -114,7 +114,7 @@ const Transformation: React.FC = () => {
           <img 
             src={sketchImage} 
             alt="Sketch Concept" 
-            className="w-full h-full object-cover grayscale contrast-125 brightness-110 blur-[1px]" 
+            className="w-full h-full object-cover grayscale contrast-150 brightness-110 sepia-[.3] blur-[1px]" 
             draggable={false}
           />
           <div className="absolute top-8 left-8 bg-black/40 backdrop-blur-md border border-white/10 px-6 py-3 rounded-full">

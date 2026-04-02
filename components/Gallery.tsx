@@ -94,10 +94,10 @@ const Gallery: React.FC = () => {
            initial={{ opacity: 0, y: 20 }}
            whileInView={{ opacity: 1, y: 0 }}
            viewport={{ once: true }}
-           className="flex flex-col md:flex-row justify-between items-center mb-10 border-b border-[#1A3C34]/10 pb-4 gap-6 sticky top-20 z-40 bg-[#FAF9F6]/95 backdrop-blur-sm md:static md:bg-transparent -mx-4 px-4 md:mx-0 md:px-0"
+           className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-10 border-b border-[#1A3C34]/10 pb-4 gap-4"
         >
-          <div className="w-full md:w-auto overflow-x-auto pb-2 md:pb-0 scrollbar-hide">
-             <div className="flex flex-nowrap md:flex-wrap justify-start md:justify-center gap-6 md:gap-8 px-2 min-w-max">
+          <div className="w-full sm:w-auto overflow-x-auto pb-2 sm:pb-0 scrollbar-hide">
+             <div className="flex flex-nowrap sm:flex-wrap justify-start sm:justify-center gap-6 sm:gap-8 min-w-max">
                 {categories.map((cat) => (
                   <button
                     key={cat}
@@ -118,7 +118,7 @@ const Gallery: React.FC = () => {
              </div>
           </div>
 
-          <div className="flex items-center gap-2 relative group cursor-pointer w-full md:w-auto justify-end px-2">
+          <div className="flex items-center gap-2 relative group cursor-pointer w-full sm:w-auto justify-start sm:justify-end">
             <span className="text-[10px] uppercase tracking-widest text-[#1A3C34]/60">Ordenar:</span>
             <button 
               onClick={() => setSortOrder(prev => prev === 'default' ? 'asc' : prev === 'asc' ? 'desc' : 'default')}

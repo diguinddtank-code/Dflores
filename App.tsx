@@ -6,7 +6,7 @@ import Wizard from './components/Wizard';
 import Gallery from './components/Gallery';
 import Process from './components/Process';
 import FAQ from './components/FAQ';
-import VideoSection from './components/VideoSection';
+import InstagramSection from './components/InstagramSection';
 import Footer from './components/Footer';
 import VirtualConcierge from './components/WhatsAppWidget';
 import { motion as m, useScroll, useSpring, useTransform } from 'framer-motion';
@@ -177,7 +177,7 @@ const App: React.FC = () => {
         <Wizard />
         <Gallery />
         <FAQ />
-        <VideoSection />
+        <InstagramSection />
         
         {/* Section: Contact / Quote Form - Integrado ao final da área branca */}
         <section id="contact" className="py-24 bg-[#1A3C34] text-white relative overflow-hidden">

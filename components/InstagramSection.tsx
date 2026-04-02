@@ -1,20 +1,18 @@
-import React from 'react';
+import React, { useState, useRef } from 'react';
 import { motion } from 'framer-motion';
-import { Instagram, Heart, MessageCircle, Grid, Play, UserSquare, MoreHorizontal, ChevronDown } from 'lucide-react';
-
-const FEED_IMAGES = [
-  'https://i.imgur.com/hkHP81F.png',
-  'https://i.imgur.com/PA1YDG1.jpeg',
-  'https://i.imgur.com/dE68d39.jpeg',
-  'https://i.imgur.com/RvYM7IY.jpeg',
-  'https://i.imgur.com/8GhqEJW.jpeg',
-  'https://i.imgur.com/iLYsMuc.jpeg',
-  'https://i.imgur.com/vPrh116.jpeg',
-  'https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&q=80&w=800',
-  'https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?auto=format&fit=crop&q=80&w=800'
-];
+import { Instagram, Heart, MessageCircle, Grid, Play, UserSquare, MoreHorizontal, ChevronDown, Volume2, VolumeX } from 'lucide-react';
 
 const InstagramSection: React.FC = () => {
+  const [isMuted, setIsMuted] = useState(true);
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  const toggleMute = () => {
+    if (videoRef.current) {
+      videoRef.current.muted = !videoRef.current.muted;
+      setIsMuted(videoRef.current.muted);
+    }
+  };
+
   return (
     <section id="instagram" className="py-24 bg-[#FAF9F6] relative overflow-hidden">
       <div className="container mx-auto px-4 md:px-6 max-w-5xl">
@@ -122,28 +120,34 @@ const InstagramSection: React.FC = () => {
             </div>
           </div>
 
-          {/* Grid */}
-          <div className="grid grid-cols-3 gap-1 md:gap-1">
-            {FEED_IMAGES.map((img, idx) => (
-              <motion.div 
-                key={idx}
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: idx * 0.1 }}
-                className="aspect-square relative group cursor-pointer overflow-hidden"
-              >
-                <img src={img} alt={`Post ${idx + 1}`} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
-                <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-4 md:gap-6 text-white">
-                  <div className="flex items-center gap-1.5 md:gap-2 font-semibold text-sm md:text-base">
-                    <Heart className="fill-white w-4 h-4 md:w-6 md:h-6" /> {Math.floor(Math.random() * 500) + 100}
-                  </div>
-                  <div className="flex items-center gap-1.5 md:gap-2 font-semibold text-sm md:text-base">
-                    <MessageCircle className="fill-white w-4 h-4 md:w-6 md:h-6" /> {Math.floor(Math.random() * 50) + 5}
-                  </div>
+          {/* Video Player */}
+          <div className="relative w-full aspect-[4/5] md:aspect-video bg-black cursor-pointer group" onClick={toggleMute}>
+            <video
+              ref={videoRef}
+              src="https://i.imgur.com/WDLKZzo.mp4"
+              className="w-full h-full object-cover"
+              autoPlay
+              loop
+              muted
+              playsInline
+            />
+            {/* Overlay for Mute/Unmute Icon */}
+            <div className="absolute bottom-4 right-4 z-10 bg-black/50 p-2 rounded-full backdrop-blur-sm transition-opacity opacity-100 md:opacity-0 md:group-hover:opacity-100">
+              {isMuted ? (
+                <VolumeX className="text-white w-6 h-6" />
+              ) : (
+                <Volume2 className="text-white w-6 h-6" />
+              )}
+            </div>
+            {/* Click to unmute hint */}
+            {isMuted && (
+              <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                <div className="bg-black/40 backdrop-blur-md px-6 py-3 rounded-full text-white text-sm font-semibold tracking-wide flex items-center gap-2">
+                  <VolumeX size={18} />
+                  Toque para ativar o som
                 </div>
-              </motion.div>
-            ))}
+              </div>
+            )}
           </div>
         </motion.div>
       </div>

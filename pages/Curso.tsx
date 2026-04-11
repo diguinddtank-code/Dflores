@@ -106,12 +106,12 @@ const Curso: React.FC = () => {
       `}</style>
 
       {/* Topbar */}
-      <div className="bg-wine text-cream text-center py-2 text-xs md:text-sm font-medium tracking-wide sticky top-0 z-50 px-4">
-        ⚠️ ATENÇÃO: Oferta especial de lançamento. Apenas <span className="font-bold text-gold">23 vagas</span> restantes!
+      <div className="bg-wine text-cream text-center py-2.5 text-xs md:text-sm font-medium tracking-wide sticky top-0 z-50 px-4 flex items-center justify-center gap-2">
+        🌸 Oferta especial ativa — <span className="text-gold font-bold">Economize R$300</span> nas próximas horas · Vagas limitadas
       </div>
 
       {/* Hero */}
-      <section id="hero" className="relative bg-[#1A0B12] pt-16 pb-32 md:pt-24 md:pb-40 overflow-hidden min-h-screen flex flex-col items-center justify-center">
+      <section id="hero" className="relative bg-[#1A0B12] pt-12 pb-40 md:pt-16 md:pb-48 overflow-hidden min-h-screen flex flex-col items-center justify-center">
         {/* Background Image */}
         <div className="absolute inset-0 z-0">
           <img src="https://i.imgur.com/JvXeAtg.jpeg" alt="Background" className="w-full h-full object-cover opacity-50" />
@@ -141,10 +141,10 @@ const Curso: React.FC = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.2 }}
-            className="relative z-10 flex flex-col items-center w-full -mt-16 sm:-mt-20 md:-mt-24"
+            className="relative z-10 flex flex-col items-start md:items-center w-full -mt-8 sm:-mt-12 md:-mt-16"
           >
             {/* Enormous Logo with Blooming SVG Effects */}
-            <div className="relative flex items-center justify-center mb-8 md:mb-12 w-full max-w-[280px] sm:max-w-[340px] md:max-w-[420px]">
+            <div className="relative flex items-center justify-center mb-12 md:mb-16 w-full max-w-[240px] sm:max-w-[300px] md:max-w-[420px] self-center">
               
               {/* Blooming Petals Animation Behind Logo */}
               <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
@@ -211,28 +211,77 @@ const Curso: React.FC = () => {
               />
             </div>
             
-            <span className="text-gold uppercase tracking-[0.4em] md:tracking-[0.6em] text-[10px] md:text-xs font-bold mb-5 block drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]">
-              Masterclass Exclusiva
-            </span>
+            <div className="inline-flex items-center gap-2 border border-gold/30 rounded-full px-4 py-1.5 mb-6 bg-gold/10 self-start md:self-center">
+              <div className="w-2 h-2 rounded-full bg-gold animate-pulse"></div>
+              <span className="text-gold text-[10px] md:text-xs font-bold tracking-widest uppercase">Curso 100% Online • Começa Hoje</span>
+            </div>
             
-            <h1 className="font-playfair text-5xl sm:text-6xl md:text-7xl lg:text-8xl text-white font-bold leading-[1.1] mb-6 max-w-4xl drop-shadow-[0_4px_10px_rgba(0,0,0,0.8)]">
-              Transforme sua paixão em <br className="hidden sm:block" />
-              <span className="text-gold italic font-light drop-shadow-[0_0_15px_rgba(201,168,76,0.4)]">Arte Monumental</span>
+            <h1 className="font-playfair text-4xl sm:text-5xl md:text-7xl text-white font-bold leading-[1.1] mb-6 max-w-4xl drop-shadow-[0_4px_10px_rgba(0,0,0,0.8)] text-left md:text-center w-full">
+              Da paixão por flores <br className="hidden md:block" />
+              <span className="text-gold italic font-light drop-shadow-[0_0_15px_rgba(201,168,76,0.4)]">à profissão dos seus</span><br />
+              <span className="text-gold italic font-light drop-shadow-[0_0_15px_rgba(201,168,76,0.4)]">sonhos</span><br />
+              <span className="text-transparent font-light tracking-wide" style={{ WebkitTextStroke: '1px rgba(255,255,255,0.6)' }}>começa aqui.</span>
             </h1>
             
-            <p className="text-base sm:text-lg md:text-xl text-white mb-10 max-w-2xl leading-relaxed font-medium drop-shadow-[0_4px_8px_rgba(0,0,0,0.9)] px-4">
-              O método completo para você dominar a arquitetura floral, criar cenários inesquecíveis e faturar com eventos de alto padrão.
+            <p className="text-base sm:text-lg md:text-xl text-white/90 mb-10 max-w-2xl leading-relaxed font-medium drop-shadow-[0_4px_8px_rgba(0,0,0,0.9)] text-left md:text-center w-full">
+              Aprenda floricultura do absoluto zero. Técnica profissional, teoria de cores, precificação e como <strong className="text-white font-bold">montar um negócio real</strong> — tudo no seu ritmo, de onde você estiver.
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-4 items-center justify-center w-full px-4">
+            {/* Avatars */}
+            <div className="flex flex-col md:flex-row items-start md:items-center gap-4 mb-10 w-full md:justify-center">
+              <div className="flex -space-x-3">
+                {['AM', 'CS', 'PR', 'JF', 'LM'].map((initials, i) => (
+                  <div key={i} className="w-10 h-10 rounded-full bg-[#8A5A44] border-2 border-[#1A0B12] flex items-center justify-center text-white text-xs font-bold shadow-lg">
+                    {initials}
+                  </div>
+                ))}
+              </div>
+              <div className="flex flex-col items-start md:items-start">
+                <div className="flex gap-1 text-gold mb-1">
+                  {[...Array(5)].map((_, i) => <Star key={i} size={14} fill="currentColor" />)}
+                </div>
+                <p className="text-white/80 text-xs sm:text-sm text-left">
+                  <strong className="text-white">+500 alunas</strong> já transformaram<br className="hidden md:block" /> suas vidas
+                </p>
+              </div>
+            </div>
+
+            <div className="flex flex-col items-start md:items-center w-full">
               <button 
                 onClick={() => document.getElementById('pricing')?.scrollIntoView({ behavior: 'smooth' })} 
-                className="w-full sm:w-auto bg-gold text-wine font-black text-sm md:text-base tracking-[0.2em] uppercase px-8 md:px-14 py-5 rounded-sm shadow-[0_10px_40px_rgba(201,168,76,0.5)] hover:bg-cream hover:scale-105 transition-all duration-300 flex items-center justify-center gap-3"
+                className="w-full md:w-auto bg-[#C9A84C] text-white font-black text-sm md:text-base tracking-widest uppercase px-8 md:px-14 py-5 rounded-xl shadow-[0_10px_40px_rgba(201,168,76,0.3)] hover:bg-[#b5953f] hover:scale-[1.02] transition-all duration-300 flex items-center justify-center gap-3"
               >
-                Garantir Minha Vaga <ArrowRight size={18} />
+                QUERO COMEÇAR AGORA 
+                <div className="w-6 h-6 rounded-full bg-white/20 flex items-center justify-center">
+                  <ArrowRight size={14} />
+                </div>
               </button>
+              <div className="flex items-center gap-2 mt-4 text-white/60 text-xs md:text-sm">
+                <ShieldCheck size={16} />
+                <span>Pagamento seguro · Garantia de 7 dias sem perguntas</span>
+              </div>
             </div>
           </motion.div>
+        </div>
+
+        {/* Marquee */}
+        <div className="absolute bottom-0 left-0 w-full bg-wine py-3 overflow-hidden flex items-center border-t border-gold/20 z-20">
+          <div className="flex whitespace-nowrap animate-[scroll_30s_linear_infinite]">
+            {[...Array(2)].map((_, i) => (
+              <div key={i} className="flex items-center">
+                {[...Array(4)].map((_, j) => (
+                  <React.Fragment key={j}>
+                    <span className="mx-4 text-cream text-sm md:text-base font-medium"><span className="text-gold font-bold">100%</span> de satisfação</span>
+                    <span className="text-gold/50">•</span>
+                    <span className="mx-4 text-cream text-sm md:text-base font-medium"><span className="text-gold font-bold">10+</span> anos de expertise</span>
+                    <span className="text-gold/50">•</span>
+                    <span className="mx-4 text-cream text-sm md:text-base font-medium"><span className="text-gold font-bold">+500</span> alunas formadas</span>
+                    <span className="text-gold/50">•</span>
+                  </React.Fragment>
+                ))}
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 

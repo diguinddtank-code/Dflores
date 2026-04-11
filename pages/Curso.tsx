@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { CheckCircle2, Star, BookOpen, Users, ChevronDown, ShieldCheck, CreditCard, Smartphone, ArrowRight, Heart, TrendingUp, Sparkles, Flower2, Crown, Gem, Palette, Camera, Scissors, Droplets, Leaf, Sun } from 'lucide-react';
 
@@ -43,6 +43,16 @@ const Curso: React.FC = () => {
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const petals = useMemo(() => {
+    return [...Array(15)].map(() => ({
+      left: `${Math.random() * 100}%`,
+      width: `${Math.random() * 20 + 10}px`,
+      height: `${Math.random() * 20 + 10}px`,
+      animationDuration: `${Math.random() * 10 + 15}s`,
+      animationDelay: `-${Math.random() * 15}s`
+    }));
   }, []);
 
   return (
@@ -101,113 +111,187 @@ const Curso: React.FC = () => {
       </div>
 
       {/* Hero */}
-      <section id="hero" className="relative bg-cream pt-12 pb-24 overflow-hidden min-h-[90vh] flex items-center">
+      <section id="hero" className="relative bg-[#1A0B12] pt-16 pb-32 md:pt-24 md:pb-40 overflow-hidden min-h-screen flex flex-col items-center justify-center">
         {/* Background Image */}
         <div className="absolute inset-0 z-0">
-          <img src="https://i.imgur.com/JvXeAtg.jpeg" alt="Background" className="w-full h-full object-cover opacity-20" />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#FDF8F5] via-[#FDF8F5]/90 to-[#FDF8F5]/40"></div>
+          <img src="https://i.imgur.com/JvXeAtg.jpeg" alt="Background" className="w-full h-full object-cover opacity-50" />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#1A0B12]/30 via-[#1A0B12]/80 to-[#1A0B12]"></div>
         </div>
 
         {/* Petals Animation */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          {[...Array(12)].map((_, i) => (
-            <div key={i} className="petal" style={{
-              left: `${Math.random() * 100}%`,
-              width: `${Math.random() * 20 + 10}px`,
-              height: `${Math.random() * 20 + 10}px`,
-              animationDuration: `${Math.random() * 10 + 10}s`,
-              animationDelay: `${Math.random() * 5}s`
-            }} />
+        <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
+          {petals.map((style, i) => (
+            <div key={i} className="petal" style={style} />
           ))}
         </div>
         
-        <div className="container mx-auto px-6 max-w-6xl relative z-10">
-          <div className="flex flex-col lg:flex-row gap-12 items-center">
-            <div className="lg:w-3/5">
-              <a href="/">
-                <img src="https://i.imgur.com/APXOSOf.png" alt="D'Flores" className="h-16 mb-8" />
-              </a>
-              <motion.h1 
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                className="font-playfair text-4xl md:text-5xl lg:text-6xl text-wine font-bold leading-tight mb-6"
-              >
-                Transforme sua paixão por flores em <span className="text-gold italic">profissão lucrativa</span>
-              </motion.h1>
-              <motion.p 
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.1 }}
-                className="text-lg text-gray-700 mb-8 max-w-xl leading-relaxed"
-              >
-                O método completo para você dominar a arte floral, criar arranjos monumentais e faturar com eventos de alto padrão, mesmo começando do zero.
-              </motion.p>
+        <div className="container mx-auto px-4 md:px-6 max-w-7xl relative z-10 flex flex-col items-center text-center">
+          
+          {/* Massive Logo Background Effect */}
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 2, ease: "easeOut" }}
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[200%] sm:w-[150%] md:w-[100%] max-w-5xl opacity-[0.04] pointer-events-none flex justify-center"
+          >
+            <img src="https://i.imgur.com/APXOSOf.png" alt="D'Flores" className="w-full h-auto object-contain" />
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, delay: 0.2 }}
+            className="relative z-10 flex flex-col items-center w-full -mt-16 sm:-mt-20 md:-mt-24"
+          >
+            {/* Enormous Logo with Blooming SVG Effects */}
+            <div className="relative flex items-center justify-center mb-8 md:mb-12 w-full max-w-[280px] sm:max-w-[340px] md:max-w-[420px]">
               
+              {/* Blooming Petals Animation Behind Logo */}
+              <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                <svg viewBox="0 0 200 200" className="w-[250%] h-[250%] text-gold absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+                  {/* Layer 1: Slow rotating geometric floral base */}
+                  <motion.g animate={{ rotate: 360 }} transition={{ duration: 60, repeat: Infinity, ease: "linear" }} style={{ transformOrigin: "100px 100px" }}>
+                    {[...Array(12)].map((_, i) => (
+                      <path 
+                        key={`base-${i}`} 
+                        d="M100,100 C90,60 90,20 100,0 C110,20 110,60 100,100 Z" 
+                        fill="currentColor" 
+                        transform={`rotate(${i * 30} 100 100)`} 
+                        opacity="0.15" 
+                      />
+                    ))}
+                  </motion.g>
+                  
+                  {/* Layer 2: Radiating/Blooming Petals */}
+                  {[...Array(8)].map((_, i) => (
+                    <motion.g key={`bloom-${i}`} transform={`rotate(${i * 45} 100 100)`} style={{ transformOrigin: "100px 100px" }}>
+                      <motion.path
+                        d="M100,100 C80,65 80,25 100,5 C120,25 120,65 100,100 Z"
+                        fill="currentColor"
+                        initial={{ scale: 0.5, opacity: 0 }}
+                        animate={{ 
+                          scale: [0.5, 1.2, 1.5], 
+                          opacity: [0, 0.6, 0]
+                        }}
+                        transition={{ 
+                          duration: 4, 
+                          repeat: Infinity, 
+                          delay: i * 0.5, 
+                          ease: "easeOut" 
+                        }}
+                        style={{ transformOrigin: "100px 100px" }}
+                      />
+                    </motion.g>
+                  ))}
+                  
+                  {/* Layer 3: Inner rotating ring */}
+                  <motion.circle 
+                    cx="100" cy="100" r="60" 
+                    fill="none" stroke="currentColor" strokeWidth="0.5" strokeDasharray="2 6" 
+                    animate={{ rotate: -360 }} 
+                    transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+                    style={{ transformOrigin: "100px 100px" }}
+                    opacity="0.5"
+                  />
+                </svg>
+              </div>
+
+              {/* Deep Pulsing Glow */}
               <motion.div 
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.2 }}
-                className="space-y-4 mb-10"
+                animate={{ scale: [1, 1.2, 1], opacity: [0.4, 0.7, 0.4] }}
+                transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+                className="absolute inset-0 bg-gold/30 blur-[50px] rounded-full"
+              ></motion.div>
+
+              {/* The Logo Itself */}
+              <img 
+                src="https://i.imgur.com/APXOSOf.png" 
+                alt="D'Flores" 
+                className="w-full h-auto object-contain drop-shadow-[0_0_30px_rgba(201,168,76,0.8)] relative z-10" 
+              />
+            </div>
+            
+            <span className="text-gold uppercase tracking-[0.4em] md:tracking-[0.6em] text-[10px] md:text-xs font-bold mb-5 block drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]">
+              Masterclass Exclusiva
+            </span>
+            
+            <h1 className="font-playfair text-5xl sm:text-6xl md:text-7xl lg:text-8xl text-white font-bold leading-[1.1] mb-6 max-w-4xl drop-shadow-[0_4px_10px_rgba(0,0,0,0.8)]">
+              Transforme sua paixão em <br className="hidden sm:block" />
+              <span className="text-gold italic font-light drop-shadow-[0_0_15px_rgba(201,168,76,0.4)]">Arte Monumental</span>
+            </h1>
+            
+            <p className="text-base sm:text-lg md:text-xl text-white mb-10 max-w-2xl leading-relaxed font-medium drop-shadow-[0_4px_8px_rgba(0,0,0,0.9)] px-4">
+              O método completo para você dominar a arquitetura floral, criar cenários inesquecíveis e faturar com eventos de alto padrão.
+            </p>
+
+            <div className="flex flex-col sm:flex-row gap-4 items-center justify-center w-full px-4">
+              <button 
+                onClick={() => document.getElementById('pricing')?.scrollIntoView({ behavior: 'smooth' })} 
+                className="w-full sm:w-auto bg-gold text-wine font-black text-sm md:text-base tracking-[0.2em] uppercase px-8 md:px-14 py-5 rounded-sm shadow-[0_10px_40px_rgba(201,168,76,0.5)] hover:bg-cream hover:scale-105 transition-all duration-300 flex items-center justify-center gap-3"
               >
-                {['Técnicas exclusivas de montagem', 'Precificação segura e lucrativa', "Certificado de conclusão D'Flores"].map((bullet, i) => (
-                  <div key={i} className="flex items-center gap-3 text-gray-800 font-medium">
-                    <CheckCircle2 className="text-gold" size={20} />
+                Garantir Minha Vaga <ArrowRight size={18} />
+              </button>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Floating Pricing Card */}
+      <section className="relative z-20 -mt-16 md:-mt-24 pb-16 md:pb-24 px-4 md:px-6">
+        <div className="container mx-auto max-w-5xl">
+          <motion.div 
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            className="glass-card bg-white/95 backdrop-blur-xl p-6 sm:p-8 md:p-12 rounded-2xl shadow-[0_20px_60px_rgba(0,0,0,0.2)] border border-gold/30 relative flex flex-col md:flex-row items-center gap-8 md:gap-10"
+          >
+            <div className="absolute -top-3 md:-top-4 left-1/2 -translate-x-1/2 bg-wine text-cream text-[9px] md:text-xs font-bold px-6 md:px-8 py-1.5 md:py-2 rounded-full uppercase tracking-[0.2em] whitespace-nowrap shadow-lg">
+              Oferta Especial de Lançamento
+            </div>
+            
+            <div className="w-full md:w-1/2 text-left pt-4 md:pt-0 border-b md:border-b-0 md:border-r border-gold/20 pb-6 md:pb-0 md:pr-10">
+              <h3 className="font-playfair text-2xl md:text-3xl text-wine font-bold mb-4 text-center md:text-left">O que está incluso hoje:</h3>
+              <div className="space-y-3 md:space-y-4">
+                {['Acesso vitalício a todas as aulas', 'Técnicas exclusivas de montagem', 'Precificação segura e lucrativa', "Certificado de conclusão D'Flores"].map((bullet, i) => (
+                  <div key={i} className="flex items-start gap-3 text-gray-700 font-medium text-sm md:text-base">
+                    <CheckCircle2 className="text-gold shrink-0 mt-0.5" size={18} />
                     <span>{bullet}</span>
                   </div>
                 ))}
-              </motion.div>
-              
-              <motion.button 
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.3 }}
-                onClick={() => document.getElementById('pricing')?.scrollIntoView({ behavior: 'smooth' })} 
-                className="w-full sm:w-auto bg-gold text-white font-bold text-sm md:text-base tracking-widest px-10 py-5 rounded-sm shadow-xl hover:bg-wine transition-colors duration-300 flex items-center justify-center gap-3"
-              >
-                QUERO GARANTIR MINHA VAGA <ArrowRight size={18} />
-              </motion.button>
-            </div>
-            
-            <motion.div 
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.4 }}
-              className="lg:w-2/5 w-full"
-            >
-              <div className="glass-card p-8 rounded-2xl shadow-2xl relative">
-                <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-wine text-cream text-xs font-bold px-6 py-2 rounded-full uppercase tracking-wider whitespace-nowrap shadow-md">
-                  Oferta por tempo limitado
+              </div>
+              <div className="mt-6 pt-6 border-t border-gray-100">
+                <p className="font-bold text-wine text-[10px] md:text-xs uppercase tracking-wider mb-3 text-center md:text-left">Bônus Exclusivos:</p>
+                <div className="flex items-start gap-3 text-sm text-gray-600 mb-2">
+                  <Star className="text-gold shrink-0 mt-0.5" size={16} fill="currentColor" /> Planilha de Precificação Automática
                 </div>
-                
-                <div className="text-center mb-6 mt-4">
-                  <p className="text-gray-400 line-through text-lg">De R$ 597,00</p>
-                  <p className="font-playfair text-5xl text-wine font-bold mt-1">12x R$ 29,70</p>
-                  <p className="text-sm text-gray-500 mt-2">ou R$ 297,00 à vista</p>
-                </div>
-                
-                <div className="bg-cream p-4 rounded-lg mb-6 text-center border border-gold/10">
-                  <p className="text-sm text-wine font-bold mb-3 uppercase tracking-wider">A oferta encerra em:</p>
-                  <div className="flex justify-center gap-4 font-playfair text-3xl text-gold font-bold">
-                    <div className="flex flex-col items-center"><span>00</span><span className="text-[10px] font-dmsans text-gray-500 uppercase tracking-widest mt-1">Horas</span></div>
-                    <span className="text-wine/30">:</span>
-                    <div className="flex flex-col items-center"><span>{String(Math.floor(timeLeft / 60)).padStart(2, '0')}</span><span className="text-[10px] font-dmsans text-gray-500 uppercase tracking-widest mt-1">Min</span></div>
-                    <span className="text-wine/30">:</span>
-                    <div className="flex flex-col items-center"><span>{String(timeLeft % 60).padStart(2, '0')}</span><span className="text-[10px] font-dmsans text-gray-500 uppercase tracking-widest mt-1">Seg</span></div>
-                  </div>
-                </div>
-                
-                <div className="space-y-3 pt-4 border-t border-gray-100">
-                  <p className="font-bold text-gray-800 text-xs uppercase tracking-wider mb-3">Bônus Inclusos Hoje:</p>
-                  <div className="flex items-start gap-3 text-sm text-gray-600">
-                    <Star className="text-gold shrink-0 mt-0.5" size={16} fill="currentColor" /> Planilha de Precificação Automática
-                  </div>
-                  <div className="flex items-start gap-3 text-sm text-gray-600">
-                    <Star className="text-gold shrink-0 mt-0.5" size={16} fill="currentColor" /> Guia de Fornecedores Secretos
-                  </div>
+                <div className="flex items-start gap-3 text-sm text-gray-600">
+                  <Star className="text-gold shrink-0 mt-0.5" size={16} fill="currentColor" /> Guia de Fornecedores Secretos
                 </div>
               </div>
-            </motion.div>
-          </div>
+            </div>
+
+            <div className="w-full md:w-1/2 text-center pt-4 md:pt-0">
+              <p className="text-gray-400 line-through text-base md:text-lg mb-1">De R$ 597,00</p>
+              <p className="font-playfair text-4xl sm:text-5xl md:text-6xl text-wine font-bold mb-2">12x R$ 29,70</p>
+              <p className="text-xs md:text-sm text-gray-500 mb-6 md:mb-8">ou R$ 297,00 à vista</p>
+              
+              <div className="bg-cream/50 p-3 md:p-4 rounded-lg mb-6 md:mb-8 inline-block border border-gold/20">
+                <p className="text-[10px] md:text-xs text-wine font-bold mb-2 md:mb-3 uppercase tracking-widest">A oferta encerra em:</p>
+                <div className="flex justify-center gap-3 md:gap-4 font-playfair text-2xl md:text-3xl text-gold font-bold">
+                  <div className="flex flex-col items-center"><span className="w-10 md:w-12">{String(Math.floor(timeLeft / 60)).padStart(2, '0')}</span><span className="text-[8px] md:text-[9px] font-dmsans text-gray-500 uppercase tracking-widest mt-1">Min</span></div>
+                  <span className="text-wine/30">:</span>
+                  <div className="flex flex-col items-center"><span className="w-10 md:w-12">{String(timeLeft % 60).padStart(2, '0')}</span><span className="text-[8px] md:text-[9px] font-dmsans text-gray-500 uppercase tracking-widest mt-1">Seg</span></div>
+                </div>
+              </div>
+
+              <button 
+                onClick={() => document.getElementById('pricing')?.scrollIntoView({ behavior: 'smooth' })} 
+                className="w-full bg-gold text-white font-bold text-xs md:text-sm tracking-widest uppercase px-6 md:px-8 py-4 rounded-sm shadow-lg hover:bg-wine transition-colors duration-300"
+              >
+                Quero me inscrever agora
+              </button>
+            </div>
+          </motion.div>
         </div>
       </section>
 

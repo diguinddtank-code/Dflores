@@ -54,7 +54,7 @@ const VirtualConcierge: React.FC = () => {
                 <div className="relative">
                   <div className="w-10 h-10 rounded-full border-2 border-[#D4AF37] p-[2px]">
                     <img 
-                      src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=200" 
+                      src="https://i.imgur.com/JvXeAtg.jpeg" 
                       alt="Ana Concierge" 
                       className="w-full h-full rounded-full object-cover"
                     />
@@ -128,7 +128,7 @@ const VirtualConcierge: React.FC = () => {
              
              <div className="w-16 h-16 rounded-full bg-white border border-[#D4AF37]/30 p-1 shadow-[0_10px_30px_rgba(0,0,0,0.15)] relative z-10 overflow-hidden">
                <img 
-                 src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=200" 
+                 src="https://i.imgur.com/JvXeAtg.jpeg" 
                  alt="Concierge" 
                  className="w-full h-full rounded-full object-cover transition-transform duration-700 group-hover:scale-110"
                />

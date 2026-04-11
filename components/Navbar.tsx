@@ -17,10 +17,11 @@ const Navbar: React.FC = () => {
   }, []);
 
   const menuItems = [
-    { name: 'Simulador', href: '#wizard' },
-    { name: 'Portfolio', href: '#gallery' },
-    { name: 'O Ateliê', href: '#atelier' },
-    { name: 'Vídeo', href: '#video-experience' },
+    { name: 'Simulador', href: '/#wizard' },
+    { name: 'Portfolio', href: '/#gallery' },
+    { name: 'O Ateliê', href: '/#atelier' },
+    { name: 'Vídeo', href: '/#video-experience' },
+    { name: 'Curso', href: '/curso' },
   ];
 
   return (
@@ -32,7 +33,11 @@ const Navbar: React.FC = () => {
           animate={{ opacity: 1 }}
           className="relative z-[70] cursor-pointer flex-shrink-0"
           onClick={() => {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+            if (window.location.pathname !== '/') {
+              window.location.href = '/';
+            } else {
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
             setIsMobileMenuOpen(false);
           }}
         >

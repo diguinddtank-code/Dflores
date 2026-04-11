@@ -19,9 +19,9 @@ const Transformation: React.FC = () => {
   const yContent = useTransform(scrollYProgress, [0, 1], [0, -50]);
 
   // Sketch Image: A artistic drawing representing the concept
-  const sketchImage = "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=80&w=1920"; 
+  const sketchImage = "https://i.imgur.com/JvXeAtg.jpeg"; 
   // Real Image: The actual luxury result
-  const realImage = "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=80&w=1920"; 
+  const realImage = "https://i.imgur.com/JvXeAtg.jpeg"; 
 
   const handleMove = (event: React.MouseEvent | React.TouchEvent | MouseEvent | TouchEvent) => {
     if (!containerRef.current) return;

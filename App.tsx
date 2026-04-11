@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import AnimatedShowcase from './components/AnimatedShowcase';
@@ -12,6 +12,7 @@ import VirtualConcierge from './components/WhatsAppWidget';
 import { motion as m, useScroll, useSpring, useTransform } from 'framer-motion';
 import { TreePine, Flower, Send, Star } from 'lucide-react';
 import Lenis from 'lenis';
+import Curso from './pages/Curso';
 
 const motion = m as any;
 type Variants = any;
@@ -45,6 +46,25 @@ const staggerContainer: Variants = {
 };
 
 const App: React.FC = () => {
+  const [currentPath, setCurrentPath] = useState(window.location.pathname);
+
+  useEffect(() => {
+    const handleLocationChange = () => {
+      setCurrentPath(window.location.pathname);
+    };
+
+    window.addEventListener('popstate', handleLocationChange);
+    return () => window.removeEventListener('popstate', handleLocationChange);
+  }, []);
+
+  if (currentPath === '/curso') {
+    return <Curso />;
+  }
+
+  return <MainApp />;
+};
+
+const MainApp: React.FC = () => {
   const { scrollYProgress } = useScroll();
   const scaleX = useSpring(scrollYProgress, { stiffness: 100, damping: 30 });
   const atelierRef = useRef<HTMLElement>(null);

@@ -174,10 +174,12 @@ const Curso: React.FC = () => {
             </p>
 
             {/* Floral Divider */}
-            <div className="flex items-center justify-center gap-4 mb-10 w-full opacity-60">
-              <div className="h-[1px] w-16 bg-gradient-to-r from-transparent to-gold"></div>
-              <Flower2 size={16} className="text-gold" strokeWidth={1} />
-              <div className="h-[1px] w-16 bg-gradient-to-l from-transparent to-gold"></div>
+            <div className="flex items-center justify-center gap-2 mb-10 w-full opacity-70">
+              <div className="h-[1px] w-16 md:w-32 bg-gradient-to-r from-transparent to-[#C9A84C]/60"></div>
+              <Flower2 size={14} className="text-[#C9A84C]/80" strokeWidth={1.5} />
+              <Flower2 size={18} className="text-[#C9A84C]" strokeWidth={1.5} />
+              <Flower2 size={14} className="text-[#C9A84C]/80" strokeWidth={1.5} />
+              <div className="h-[1px] w-16 md:w-32 bg-gradient-to-l from-transparent to-[#C9A84C]/60"></div>
             </div>
 
             {/* Avatars */}
@@ -800,15 +802,22 @@ const Curso: React.FC = () => {
             initial={{ y: 100 }}
             animate={{ y: 0 }}
             exit={{ y: 100 }}
-            className="fixed bottom-0 left-0 right-0 bg-white border-t border-gold/20 shadow-[0_-10px_30px_rgba(0,0,0,0.1)] z-50 p-4"
+            className="fixed bottom-0 left-0 right-0 bg-white/95 backdrop-blur-md border-t border-[#C9A84C]/20 shadow-[0_-10px_30px_rgba(0,0,0,0.1)] z-50 px-4 py-3 sm:p-4"
           >
-            <div className="container mx-auto max-w-6xl flex flex-col sm:flex-row justify-between items-center gap-4">
-              <div className="hidden sm:block">
-                <p className="font-playfair text-wine font-bold text-xl">Curso D'Flores</p>
-                <p className="text-gray-500 text-sm font-medium">12x de R$ 29,70</p>
+            <div className="container mx-auto max-w-6xl flex justify-between items-center gap-3">
+              <div className="flex flex-col">
+                <p className="font-playfair text-[#7B1F4A] font-bold text-sm sm:text-xl leading-tight">Curso D'Flores</p>
+                <div className="flex items-center gap-2">
+                  <span className="text-gray-400 text-[10px] sm:text-xs line-through hidden sm:inline">R$ 597,00</span>
+                  <p className="text-[#C9A84C] font-bold text-xs sm:text-base">12x R$ 29,70</p>
+                </div>
               </div>
-              <button onClick={() => document.getElementById('pricing')?.scrollIntoView({ behavior: 'smooth' })} className="w-full sm:w-auto bg-gold text-white font-bold tracking-widest text-sm px-8 py-4 rounded-sm hover:bg-wine transition-colors shadow-lg">
-                GARANTIR MINHA VAGA
+              <button 
+                onClick={() => document.getElementById('pricing')?.scrollIntoView({ behavior: 'smooth' })} 
+                className="flex-1 sm:flex-none max-w-[220px] sm:max-w-none bg-gradient-to-r from-[#C9A84C] to-[#b5953f] text-white font-bold tracking-widest text-[10px] sm:text-sm px-4 sm:px-8 py-3 sm:py-4 rounded-xl hover:scale-[1.02] transition-transform shadow-[0_5px_15px_rgba(201,168,76,0.3)] flex items-center justify-center gap-2"
+              >
+                <span>GARANTIR VAGA</span>
+                <ArrowRight size={14} className="hidden sm:block" />
               </button>
             </div>
           </motion.div>

@@ -15,19 +15,16 @@ const Hero: React.FC = () => {
       {/* Background Image with Parallax */}
       <motion.div 
         style={{ y, opacity, backgroundImage: "url('https://i.imgur.com/PA1YDG1.jpeg')" }}
-        initial={{ scale: 1.2 }}
+        initial={{ scale: 1.1 }}
         animate={{ scale: 1 }}
         transition={{ duration: 2.5, ease: [0.22, 1, 0.36, 1] }}
         className="absolute inset-0 bg-cover bg-center md:bg-center will-change-transform"
       >
-        {/* Camada 1: Wash Escuro Global */}
-        <div className="absolute inset-0 bg-[#0A1A16]/30 mix-blend-multiply" />
+        {/* Elegant Dark Wash */}
+        <div className="absolute inset-0 bg-[#0A1A16]/60" />
         
-        {/* Camada 2: Gradiente Linear Inferior - Mais forte no mobile para legibilidade */}
-        <div className="absolute inset-0 bg-gradient-to-t from-[#0A1A16] via-[#0A1A16]/50 md:via-[#0A1A16]/40 to-transparent opacity-90" />
-        
-        {/* Camada 3: Radial */}
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-transparent via-[#0A1A16]/20 to-[#0A1A16]/80" />
+        {/* Subtle Gradient for Text Legibility */}
+        <div className="absolute inset-0 bg-gradient-to-t from-[#0A1A16] via-[#0A1A16]/40 to-transparent opacity-90" />
       </motion.div>
 
       <motion.div 
@@ -35,8 +32,8 @@ const Hero: React.FC = () => {
         className="relative z-10 text-center px-4 md:px-6 max-w-7xl mt-0 md:mt-0 flex flex-col items-center justify-center h-full pt-16 md:pt-0"
       >
         <motion.div
-          initial={{ opacity: 0, y: 100, filter: "blur(20px)" }}
-          animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.5, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
           className="flex flex-col items-center w-full"
         >
@@ -47,7 +44,7 @@ const Hero: React.FC = () => {
               transition={{ duration: 1, delay: 0.8 }}
               className="h-[1px] w-8 md:w-12 bg-[#D4AF37]" 
             />
-            <span className="text-[#D4AF37] uppercase tracking-[0.3em] text-[10px] md:text-xs font-bold drop-shadow-md whitespace-nowrap">
+            <span className="text-[#D4AF37] uppercase tracking-[0.3em] text-[10px] md:text-xs font-bold whitespace-nowrap">
               Design Autoral & Monumental
             </span>
             <motion.div 
@@ -58,17 +55,16 @@ const Hero: React.FC = () => {
             />
           </div>
 
-          {/* Typography ajustada para mobile: text-5xl ao invés de 9xl */}
-          <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-9xl font-serif text-white mb-6 md:mb-10 leading-[1.1] md:leading-[1.05] font-light tracking-tight drop-shadow-2xl">
+          <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-9xl font-serif text-white mb-6 md:mb-10 leading-[1.1] md:leading-[1.05] font-light tracking-tight">
             <span className="block overflow-hidden">
                <motion.span initial={{ y: "100%" }} animate={{ y: 0 }} transition={{ duration: 1, delay: 0.3, ease: [0.22, 1, 0.36, 1] }} className="block">Transformamos</motion.span>
             </span>
             <span className="block overflow-hidden">
-                <motion.span initial={{ y: "100%" }} animate={{ y: 0 }} transition={{ duration: 1, delay: 0.45, ease: [0.22, 1, 0.36, 1] }} className="block italic text-[#F4EBD0] mix-blend-screen opacity-90 pb-2 md:pb-4">Sonhos em Arte</motion.span>
+                <motion.span initial={{ y: "100%" }} animate={{ y: 0 }} transition={{ duration: 1, delay: 0.45, ease: [0.22, 1, 0.36, 1] }} className="block italic text-[#D4AF37] opacity-90 pb-2 md:pb-4">Sonhos em Arte</motion.span>
             </span>
           </h1>
 
-          <p className="text-white/80 text-sm md:text-lg font-light max-w-sm md:max-w-2xl mx-auto mb-10 md:mb-14 leading-relaxed drop-shadow-lg text-shadow-sm antialiased px-2">
+          <p className="text-white/80 text-sm md:text-lg font-light max-w-sm md:max-w-2xl mx-auto mb-10 md:mb-14 leading-relaxed antialiased px-2">
             Especialistas em criar experiências visuais que transcendem a realidade através de árvores gigantes e arquitetura floral de luxo.
           </p>
 
@@ -80,7 +76,7 @@ const Hero: React.FC = () => {
               transition={{ delay: 0.8, duration: 0.8 }}
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
-              className="w-full sm:w-auto group bg-[#D4AF37] text-white px-8 md:px-10 py-4 md:py-5 text-[11px] uppercase tracking-[0.3em] font-bold hover:bg-white hover:text-[#1A3C34] transition-all duration-500 shadow-[0_20px_50px_rgba(212,175,55,0.2)] flex items-center justify-center gap-4 rounded-sm border border-[#D4AF37]"
+              className="w-full sm:w-auto group bg-[#D4AF37] text-white px-8 md:px-10 py-4 md:py-5 text-[11px] uppercase tracking-[0.3em] font-bold hover:bg-white hover:text-[#1A3C34] transition-all duration-500 flex items-center justify-center gap-4 rounded-sm border border-[#D4AF37]"
             >
               Simular meu Cenário
               <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />

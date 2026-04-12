@@ -45,13 +45,14 @@ const Curso: React.FC = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const petals = useMemo(() => {
-    return [...Array(15)].map(() => ({
+  const leaves = useMemo(() => {
+    return [...Array(25)].map(() => ({
       left: `${Math.random() * 100}%`,
-      width: `${Math.random() * 20 + 10}px`,
-      height: `${Math.random() * 20 + 10}px`,
-      animationDuration: `${Math.random() * 10 + 15}s`,
-      animationDelay: `-${Math.random() * 15}s`
+      width: `${Math.random() * 15 + 10}px`,
+      height: `${Math.random() * 15 + 10}px`,
+      animationDuration: `${Math.random() * 20 + 20}s`,
+      animationDelay: `-${Math.random() * 40}s`,
+      opacity: Math.random() * 0.2 + 0.1
     }));
   }, []);
 
@@ -74,14 +75,6 @@ const Curso: React.FC = () => {
         .bg-cream { background-color: #FDF8F5; }
         .text-cream { color: #FDF8F5; }
         
-        .petal {
-          position: absolute;
-          background: #C9A84C;
-          border-radius: 150% 0 150% 0;
-          opacity: 0.15;
-          animation: fall linear infinite;
-        }
-        
         .glass-card {
           background: rgba(255, 255, 255, 0.85);
           backdrop-filter: blur(10px);
@@ -91,14 +84,22 @@ const Curso: React.FC = () => {
         .bg-pattern {
           background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23c9a84c' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
         }
+
+        .leaf {
+          position: absolute;
+          background: #C9A84C;
+          border-radius: 150% 0 150% 0;
+          animation: fall linear infinite;
+          filter: blur(1px);
+        }
         
         @keyframes fall {
-          0% { transform: translateY(-10vh) rotate(0deg) scale(0.5); opacity: 0; }
-          10% { opacity: 0.3; }
-          90% { opacity: 0.3; }
-          100% { transform: translateY(100vh) rotate(360deg) scale(1); opacity: 0; }
+          0% { transform: translateY(-10vh) rotate(0deg) translateX(0); opacity: 0; }
+          10% { opacity: var(--leaf-opacity, 0.3); }
+          90% { opacity: var(--leaf-opacity, 0.3); }
+          100% { transform: translateY(110vh) rotate(720deg) translateX(100px); opacity: 0; }
         }
-
+        
         @keyframes scroll {
           0% { transform: translateX(0); }
           100% { transform: translateX(-50%); }
@@ -111,127 +112,65 @@ const Curso: React.FC = () => {
       </div>
 
       {/* Hero */}
-      <section id="hero" className="relative bg-[#1A0B12] pt-12 pb-40 md:pt-16 md:pb-48 overflow-hidden min-h-screen flex flex-col items-center justify-center">
+      <section id="hero" className="relative bg-black pt-12 pb-40 md:pt-16 md:pb-48 overflow-hidden min-h-screen flex flex-col items-center justify-center">
         {/* Background Image */}
         <div className="absolute inset-0 z-0">
           <img src="https://i.imgur.com/JvXeAtg.jpeg" alt="Background" className="w-full h-full object-cover opacity-50" />
-          <div className="absolute inset-0 bg-gradient-to-b from-[#1A0B12]/30 via-[#1A0B12]/80 to-[#1A0B12]"></div>
+          <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/70 to-black"></div>
         </div>
 
-        {/* Petals Animation */}
+        {/* Falling Leaves Animation */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
-          {petals.map((style, i) => (
-            <div key={i} className="petal" style={style} />
+          {leaves.map((style, i) => (
+            <div key={i} className="leaf" style={{ ...style, '--leaf-opacity': style.opacity } as React.CSSProperties} />
           ))}
         </div>
         
         <div className="container mx-auto px-4 md:px-6 max-w-7xl relative z-10 flex flex-col items-center text-center">
           
-          {/* Massive Logo Background Effect */}
-          <motion.div 
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 2, ease: "easeOut" }}
-            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[200%] sm:w-[150%] md:w-[100%] max-w-5xl opacity-[0.04] pointer-events-none flex justify-center"
-          >
-            <img src="https://i.imgur.com/APXOSOf.png" alt="D'Flores" className="w-full h-auto object-contain" />
-          </motion.div>
-
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.2 }}
             className="relative z-10 flex flex-col items-start md:items-center w-full -mt-8 sm:-mt-12 md:-mt-16"
           >
-            {/* Enormous Logo with Blooming SVG Effects */}
-            <div className="relative flex items-center justify-center mb-12 md:mb-16 w-full max-w-[240px] sm:max-w-[300px] md:max-w-[420px] self-center">
-              
-              {/* Blooming Petals Animation Behind Logo */}
-              <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                <svg viewBox="0 0 200 200" className="w-[250%] h-[250%] text-gold absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
-                  {/* Layer 1: Slow rotating geometric floral base */}
-                  <motion.g animate={{ rotate: 360 }} transition={{ duration: 60, repeat: Infinity, ease: "linear" }} style={{ transformOrigin: "100px 100px" }}>
-                    {[...Array(12)].map((_, i) => (
-                      <path 
-                        key={`base-${i}`} 
-                        d="M100,100 C90,60 90,20 100,0 C110,20 110,60 100,100 Z" 
-                        fill="currentColor" 
-                        transform={`rotate(${i * 30} 100 100)`} 
-                        opacity="0.15" 
-                      />
-                    ))}
-                  </motion.g>
-                  
-                  {/* Layer 2: Radiating/Blooming Petals */}
-                  {[...Array(8)].map((_, i) => (
-                    <motion.g key={`bloom-${i}`} transform={`rotate(${i * 45} 100 100)`} style={{ transformOrigin: "100px 100px" }}>
-                      <motion.path
-                        d="M100,100 C80,65 80,25 100,5 C120,25 120,65 100,100 Z"
-                        fill="currentColor"
-                        initial={{ scale: 0.5, opacity: 0 }}
-                        animate={{ 
-                          scale: [0.5, 1.2, 1.5], 
-                          opacity: [0, 0.6, 0]
-                        }}
-                        transition={{ 
-                          duration: 4, 
-                          repeat: Infinity, 
-                          delay: i * 0.5, 
-                          ease: "easeOut" 
-                        }}
-                        style={{ transformOrigin: "100px 100px" }}
-                      />
-                    </motion.g>
-                  ))}
-                  
-                  {/* Layer 3: Inner rotating ring */}
-                  <motion.circle 
-                    cx="100" cy="100" r="60" 
-                    fill="none" stroke="currentColor" strokeWidth="0.5" strokeDasharray="2 6" 
-                    animate={{ rotate: -360 }} 
-                    transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-                    style={{ transformOrigin: "100px 100px" }}
-                    opacity="0.5"
-                  />
-                </svg>
-              </div>
-
-              {/* Deep Pulsing Glow */}
-              <motion.div 
-                animate={{ scale: [1, 1.2, 1], opacity: [0.4, 0.7, 0.4] }}
-                transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute inset-0 bg-gold/30 blur-[50px] rounded-full"
-              ></motion.div>
-
-              {/* The Logo Itself */}
+            {/* Elegant Logo */}
+            <div className="relative flex items-center justify-center mb-10 md:mb-14 w-full max-w-[200px] sm:max-w-[240px] md:max-w-[320px] self-center">
               <img 
                 src="https://i.imgur.com/APXOSOf.png" 
                 alt="D'Flores" 
-                className="w-full h-auto object-contain drop-shadow-[0_0_30px_rgba(201,168,76,0.8)] relative z-10" 
+                className="w-full h-auto object-contain relative z-10 opacity-90" 
               />
             </div>
             
-            <div className="inline-flex items-center gap-2 border border-gold/30 rounded-full px-4 py-1.5 mb-6 bg-gold/10 self-start md:self-center">
-              <div className="w-2 h-2 rounded-full bg-gold animate-pulse"></div>
+            <div className="inline-flex items-center gap-2 border border-gold/30 rounded-full px-4 py-1.5 mb-6 bg-gold/5 self-start md:self-center backdrop-blur-sm">
+              <div className="w-1.5 h-1.5 rounded-full bg-gold"></div>
               <span className="text-gold text-[10px] md:text-xs font-bold tracking-widest uppercase">Curso 100% Online • Começa Hoje</span>
             </div>
             
-            <h1 className="font-playfair text-4xl sm:text-5xl md:text-7xl text-white font-bold leading-[1.1] mb-6 max-w-4xl drop-shadow-[0_4px_10px_rgba(0,0,0,0.8)] text-left md:text-center w-full">
+            <h1 className="font-playfair text-4xl sm:text-5xl md:text-7xl text-white font-bold leading-[1.1] mb-6 max-w-4xl text-left md:text-center w-full">
               Da paixão por flores <br className="hidden md:block" />
-              <span className="text-gold italic font-light drop-shadow-[0_0_15px_rgba(201,168,76,0.4)]">à profissão dos seus</span><br />
-              <span className="text-gold italic font-light drop-shadow-[0_0_15px_rgba(201,168,76,0.4)]">sonhos</span><br />
-              <span className="text-transparent font-light tracking-wide" style={{ WebkitTextStroke: '1px rgba(255,255,255,0.6)' }}>começa aqui.</span>
+              <span className="text-gold italic font-light">à profissão dos seus</span><br />
+              <span className="text-gold italic font-light">sonhos</span><br />
+              <span className="text-white/90 font-light tracking-wide">começa aqui.</span>
             </h1>
             
-            <p className="text-base sm:text-lg md:text-xl text-white/90 mb-10 max-w-2xl leading-relaxed font-medium drop-shadow-[0_4px_8px_rgba(0,0,0,0.9)] text-left md:text-center w-full">
+            <p className="text-base sm:text-lg md:text-xl text-white/80 mb-10 max-w-2xl leading-relaxed font-light text-left md:text-center w-full">
               Aprenda floricultura do absoluto zero. Técnica profissional, teoria de cores, precificação e como <strong className="text-white font-bold">montar um negócio real</strong> — tudo no seu ritmo, de onde você estiver.
             </p>
+
+            {/* Floral Divider */}
+            <div className="flex items-center justify-center gap-4 mb-10 w-full opacity-60">
+              <div className="h-[1px] w-16 bg-gradient-to-r from-transparent to-gold"></div>
+              <Flower2 size={16} className="text-gold" strokeWidth={1} />
+              <div className="h-[1px] w-16 bg-gradient-to-l from-transparent to-gold"></div>
+            </div>
 
             {/* Avatars */}
             <div className="flex flex-col md:flex-row items-start md:items-center gap-4 mb-10 w-full md:justify-center">
               <div className="flex -space-x-3">
                 {['AM', 'CS', 'PR', 'JF', 'LM'].map((initials, i) => (
-                  <div key={i} className="w-10 h-10 rounded-full bg-[#8A5A44] border-2 border-[#1A0B12] flex items-center justify-center text-white text-xs font-bold shadow-lg">
+                  <div key={i} className="w-10 h-10 rounded-full bg-[#8A5A44] border-2 border-black flex items-center justify-center text-white text-xs font-bold shadow-lg">
                     {initials}
                   </div>
                 ))}
@@ -263,26 +202,6 @@ const Curso: React.FC = () => {
             </div>
           </motion.div>
         </div>
-
-        {/* Marquee */}
-        <div className="absolute bottom-0 left-0 w-full bg-wine py-3 overflow-hidden flex items-center border-t border-gold/20 z-20">
-          <div className="flex whitespace-nowrap animate-[scroll_30s_linear_infinite]">
-            {[...Array(2)].map((_, i) => (
-              <div key={i} className="flex items-center">
-                {[...Array(4)].map((_, j) => (
-                  <React.Fragment key={j}>
-                    <span className="mx-4 text-cream text-sm md:text-base font-medium"><span className="text-gold font-bold">100%</span> de satisfação</span>
-                    <span className="text-gold/50">•</span>
-                    <span className="mx-4 text-cream text-sm md:text-base font-medium"><span className="text-gold font-bold">10+</span> anos de expertise</span>
-                    <span className="text-gold/50">•</span>
-                    <span className="mx-4 text-cream text-sm md:text-base font-medium"><span className="text-gold font-bold">+500</span> alunas formadas</span>
-                    <span className="text-gold/50">•</span>
-                  </React.Fragment>
-                ))}
-              </div>
-            ))}
-          </div>
-        </div>
       </section>
 
       {/* Floating Pricing Card */}
@@ -292,13 +211,23 @@ const Curso: React.FC = () => {
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="glass-card bg-white/95 backdrop-blur-xl p-6 sm:p-8 md:p-12 rounded-2xl shadow-[0_20px_60px_rgba(0,0,0,0.2)] border border-gold/30 relative flex flex-col md:flex-row items-center gap-8 md:gap-10"
+            className="glass-card bg-white/95 backdrop-blur-xl p-6 sm:p-8 md:p-12 rounded-2xl shadow-[0_20px_60px_rgba(0,0,0,0.2)] border border-gold/30 relative flex flex-col md:flex-row items-center gap-8 md:gap-10 overflow-hidden"
           >
-            <div className="absolute -top-3 md:-top-4 left-1/2 -translate-x-1/2 bg-wine text-cream text-[9px] md:text-xs font-bold px-6 md:px-8 py-1.5 md:py-2 rounded-full uppercase tracking-[0.2em] whitespace-nowrap shadow-lg">
+            {/* Subtle floral watermark */}
+            <div className="absolute top-0 right-0 opacity-[0.03] pointer-events-none translate-x-1/4 -translate-y-1/4">
+              <svg width="300" height="300" viewBox="0 0 24 24" fill="none" stroke="#7B1F4A" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M12 22c4-4 8-6 8-12a8 8 0 0 0-16 0c0 6 4 8 8 12z"/>
+                <path d="M12 22v-6"/>
+                <path d="M12 16a4 4 0 0 0 4-4"/>
+                <path d="M12 16a4 4 0 0 1-4-4"/>
+              </svg>
+            </div>
+
+            <div className="absolute -top-3 md:-top-4 left-1/2 -translate-x-1/2 bg-wine text-cream text-[9px] md:text-xs font-bold px-6 md:px-8 py-1.5 md:py-2 rounded-full uppercase tracking-[0.2em] whitespace-nowrap shadow-lg z-10">
               Oferta Especial de Lançamento
             </div>
             
-            <div className="w-full md:w-1/2 text-left pt-4 md:pt-0 border-b md:border-b-0 md:border-r border-gold/20 pb-6 md:pb-0 md:pr-10">
+            <div className="w-full md:w-1/2 text-left pt-4 md:pt-0 border-b md:border-b-0 md:border-r border-gold/20 pb-6 md:pb-0 md:pr-10 relative z-10">
               <h3 className="font-playfair text-2xl md:text-3xl text-wine font-bold mb-4 text-center md:text-left">O que está incluso hoje:</h3>
               <div className="space-y-3 md:space-y-4">
                 {['Acesso vitalício a todas as aulas', 'Técnicas exclusivas de montagem', 'Precificação segura e lucrativa', "Certificado de conclusão D'Flores"].map((bullet, i) => (
@@ -319,7 +248,7 @@ const Curso: React.FC = () => {
               </div>
             </div>
 
-            <div className="w-full md:w-1/2 text-center pt-4 md:pt-0">
+            <div className="w-full md:w-1/2 text-center pt-4 md:pt-0 relative z-10">
               <p className="text-gray-400 line-through text-base md:text-lg mb-1">De R$ 597,00</p>
               <p className="font-playfair text-4xl sm:text-5xl md:text-6xl text-wine font-bold mb-2">12x R$ 29,70</p>
               <p className="text-xs md:text-sm text-gray-500 mb-6 md:mb-8">ou R$ 297,00 à vista</p>
@@ -358,8 +287,30 @@ const Curso: React.FC = () => {
       </div>
 
       {/* Promises/Transformation */}
-      <section className="py-24 bg-white bg-pattern">
-        <div className="container mx-auto px-6 max-w-6xl">
+      <section className="py-24 bg-white bg-pattern relative overflow-hidden">
+        {/* Decorative Floral SVG */}
+        <div className="absolute top-0 left-0 opacity-[0.03] pointer-events-none -translate-x-1/4 -translate-y-1/4">
+          <svg width="400" height="400" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" strokeWidth="0.5" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M12 22c4-4 8-6 8-12a8 8 0 0 0-16 0c0 6 4 8 8 12z"/>
+            <path d="M12 22v-6"/>
+            <path d="M12 16a4 4 0 0 0 4-4"/>
+            <path d="M12 16a4 4 0 0 1-4-4"/>
+            <path d="M12 12a4 4 0 0 0 4-4"/>
+            <path d="M12 12a4 4 0 0 1-4-4"/>
+          </svg>
+        </div>
+        <div className="absolute bottom-0 right-0 opacity-[0.03] pointer-events-none translate-x-1/4 translate-y-1/4 rotate-180">
+          <svg width="400" height="400" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" strokeWidth="0.5" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M12 22c4-4 8-6 8-12a8 8 0 0 0-16 0c0 6 4 8 8 12z"/>
+            <path d="M12 22v-6"/>
+            <path d="M12 16a4 4 0 0 0 4-4"/>
+            <path d="M12 16a4 4 0 0 1-4-4"/>
+            <path d="M12 12a4 4 0 0 0 4-4"/>
+            <path d="M12 12a4 4 0 0 1-4-4"/>
+          </svg>
+        </div>
+
+        <div className="container mx-auto px-6 max-w-6xl relative z-10">
           <div className="text-center mb-16">
             <motion.h2 
               initial={{ opacity: 0, y: 20 }}
@@ -464,8 +415,20 @@ const Curso: React.FC = () => {
       </section>
 
       {/* Course Content */}
-      <section className="py-24 bg-cream">
-        <div className="container mx-auto px-6 max-w-4xl">
+      <section className="py-24 bg-cream relative overflow-hidden">
+        {/* Decorative Floral SVG */}
+        <div className="absolute top-1/2 left-0 opacity-[0.04] pointer-events-none -translate-x-1/2 -translate-y-1/2">
+          <svg width="500" height="500" viewBox="0 0 24 24" fill="none" stroke="#7B1F4A" strokeWidth="0.5" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M12 22c4-4 8-6 8-12a8 8 0 0 0-16 0c0 6 4 8 8 12z"/>
+            <path d="M12 22v-6"/>
+            <path d="M12 16a4 4 0 0 0 4-4"/>
+            <path d="M12 16a4 4 0 0 1-4-4"/>
+            <path d="M12 12a4 4 0 0 0 4-4"/>
+            <path d="M12 12a4 4 0 0 1-4-4"/>
+          </svg>
+        </div>
+
+        <div className="container mx-auto px-6 max-w-4xl relative z-10">
           <div className="text-center mb-16">
             <motion.h2 
               initial={{ opacity: 0, y: 20 }}

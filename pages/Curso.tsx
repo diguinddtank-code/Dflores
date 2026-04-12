@@ -135,18 +135,32 @@ const Curso: React.FC = () => {
             className="relative z-10 flex flex-col items-start md:items-center w-full -mt-8 sm:-mt-12 md:-mt-16"
           >
             {/* Elegant Logo */}
-            <div className="relative flex items-center justify-center mb-10 md:mb-14 w-full max-w-[200px] sm:max-w-[240px] md:max-w-[320px] self-center">
+            <motion.div 
+              animate={{ y: [0, -10, 0] }}
+              transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
+              className="relative flex items-center justify-center mb-10 md:mb-14 w-full max-w-[200px] sm:max-w-[240px] md:max-w-[320px] self-center"
+            >
+              {/* Soft glow behind logo */}
+              <div className="absolute inset-0 bg-gold/20 blur-[60px] rounded-full"></div>
               <img 
                 src="https://i.imgur.com/APXOSOf.png" 
                 alt="D'Flores" 
-                className="w-full h-auto object-contain relative z-10 opacity-90" 
+                className="w-full h-auto object-contain relative z-10 opacity-95 drop-shadow-[0_10px_20px_rgba(0,0,0,0.5)]" 
               />
-            </div>
+            </motion.div>
             
-            <div className="inline-flex items-center gap-2 border border-gold/30 rounded-full px-4 py-1.5 mb-6 bg-gold/5 self-start md:self-center backdrop-blur-sm">
-              <div className="w-1.5 h-1.5 rounded-full bg-gold"></div>
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.5, duration: 0.5 }}
+              className="inline-flex items-center gap-2 border border-gold/40 rounded-full px-5 py-2 mb-6 bg-gradient-to-r from-[#C9A84C]/10 via-[#7B1F4A]/10 to-[#C9A84C]/10 self-start md:self-center backdrop-blur-md shadow-[0_0_20px_rgba(201,168,76,0.2)]"
+            >
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-gold opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-gold"></span>
+              </span>
               <span className="text-gold text-[10px] md:text-xs font-bold tracking-widest uppercase">Curso 100% Online • Começa Hoje</span>
-            </div>
+            </motion.div>
             
             <h1 className="font-playfair text-4xl sm:text-5xl md:text-7xl text-white font-bold leading-[1.1] mb-6 max-w-4xl text-left md:text-center w-full">
               Da paixão por flores <br className="hidden md:block" />
@@ -205,86 +219,116 @@ const Curso: React.FC = () => {
       </section>
 
       {/* Floating Pricing Card */}
-      <section className="relative z-20 -mt-16 md:-mt-24 pb-16 md:pb-24 px-4 md:px-6">
-        <div className="container mx-auto max-w-5xl">
+      <section className="relative z-20 -mt-28 md:-mt-36 pb-16 md:pb-24 px-4 md:px-6">
+        <div className="container mx-auto max-w-5xl mt-0">
           <motion.div 
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="glass-card bg-white/95 backdrop-blur-xl p-6 sm:p-8 md:p-12 rounded-2xl shadow-[0_20px_60px_rgba(0,0,0,0.2)] border border-gold/30 relative flex flex-col md:flex-row items-center gap-8 md:gap-10 overflow-hidden"
+            initial={{ opacity: 0, y: 80 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            className="relative pt-6 md:pt-8"
           >
-            {/* Subtle floral watermark */}
-            <div className="absolute top-0 right-0 opacity-[0.03] pointer-events-none translate-x-1/4 -translate-y-1/4">
-              <svg width="300" height="300" viewBox="0 0 24 24" fill="none" stroke="#7B1F4A" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M12 22c4-4 8-6 8-12a8 8 0 0 0-16 0c0 6 4 8 8 12z"/>
-                <path d="M12 22v-6"/>
-                <path d="M12 16a4 4 0 0 0 4-4"/>
-                <path d="M12 16a4 4 0 0 1-4-4"/>
-              </svg>
-            </div>
+            <div className="glass-card bg-white/95 backdrop-blur-xl p-6 sm:p-8 md:p-12 rounded-3xl shadow-[0_20px_60px_rgba(0,0,0,0.2)] border border-gold/30 relative flex flex-col lg:flex-row items-center gap-8 lg:gap-12">
+              
+              {/* Badge properly positioned on the border with solid background for readability */}
+              <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-wine text-cream text-[10px] md:text-sm font-bold px-6 md:px-10 py-2.5 md:py-3.5 rounded-full uppercase tracking-widest shadow-[0_10px_20px_rgba(123,31,74,0.3)] z-30 border border-gold/30 w-[85%] sm:w-max text-center leading-tight">
+                Oferta Especial de Lançamento
+              </div>
 
-            <div className="absolute -top-3 md:-top-4 left-1/2 -translate-x-1/2 bg-wine text-cream text-[9px] md:text-xs font-bold px-6 md:px-8 py-1.5 md:py-2 rounded-full uppercase tracking-[0.2em] whitespace-nowrap shadow-lg z-10">
-              Oferta Especial de Lançamento
-            </div>
-            
-            <div className="w-full md:w-1/2 text-left pt-4 md:pt-0 border-b md:border-b-0 md:border-r border-gold/20 pb-6 md:pb-0 md:pr-10 relative z-10">
-              <h3 className="font-playfair text-2xl md:text-3xl text-wine font-bold mb-4 text-center md:text-left">O que está incluso hoje:</h3>
-              <div className="space-y-3 md:space-y-4">
+              {/* Wrapper for watermark to prevent overflow clipping the badge */}
+              <div className="absolute inset-0 overflow-hidden rounded-3xl pointer-events-none">
+                <div className="absolute top-0 right-0 opacity-[0.03] translate-x-1/4 -translate-y-1/4">
+                  <svg width="300" height="300" viewBox="0 0 24 24" fill="none" stroke="#7B1F4A" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M12 22c4-4 8-6 8-12a8 8 0 0 0-16 0c0 6 4 8 8 12z"/>
+                    <path d="M12 22v-6"/>
+                    <path d="M12 16a4 4 0 0 0 4-4"/>
+                    <path d="M12 16a4 4 0 0 1-4-4"/>
+                  </svg>
+                </div>
+              </div>
+              
+              <div className="w-full lg:w-1/2 text-left pt-8 md:pt-4 lg:pt-0 border-b lg:border-b-0 lg:border-r border-gold/20 pb-8 lg:pb-0 lg:pr-12 relative z-10">
+              <h3 className="font-playfair text-2xl md:text-3xl text-wine font-bold mb-6 text-center lg:text-left">O que está incluso hoje:</h3>
+              <div className="space-y-4 md:space-y-5">
                 {['Acesso vitalício a todas as aulas', 'Técnicas exclusivas de montagem', 'Precificação segura e lucrativa', "Certificado de conclusão D'Flores"].map((bullet, i) => (
                   <div key={i} className="flex items-start gap-3 text-gray-700 font-medium text-sm md:text-base">
-                    <CheckCircle2 className="text-gold shrink-0 mt-0.5" size={18} />
-                    <span>{bullet}</span>
+                    <CheckCircle2 className="text-gold shrink-0 mt-0.5" size={20} />
+                    <span className="leading-snug">{bullet}</span>
                   </div>
                 ))}
               </div>
-              <div className="mt-6 pt-6 border-t border-gray-100">
-                <p className="font-bold text-wine text-[10px] md:text-xs uppercase tracking-wider mb-3 text-center md:text-left">Bônus Exclusivos:</p>
-                <div className="flex items-start gap-3 text-sm text-gray-600 mb-2">
-                  <Star className="text-gold shrink-0 mt-0.5" size={16} fill="currentColor" /> Planilha de Precificação Automática
+              <div className="mt-8 pt-6 border-t border-gray-100/50">
+                <p className="font-bold text-wine text-[10px] md:text-xs uppercase tracking-wider mb-4 text-center lg:text-left">Bônus Exclusivos:</p>
+                <div className="flex items-start gap-3 text-sm text-gray-600 mb-3">
+                  <Star className="text-gold shrink-0 mt-0.5" size={18} fill="currentColor" /> 
+                  <span className="leading-snug">Planilha de Precificação Automática</span>
                 </div>
                 <div className="flex items-start gap-3 text-sm text-gray-600">
-                  <Star className="text-gold shrink-0 mt-0.5" size={16} fill="currentColor" /> Guia de Fornecedores Secretos
+                  <Star className="text-gold shrink-0 mt-0.5" size={18} fill="currentColor" /> 
+                  <span className="leading-snug">Guia de Fornecedores Secretos</span>
                 </div>
               </div>
             </div>
 
-            <div className="w-full md:w-1/2 text-center pt-4 md:pt-0 relative z-10">
-              <p className="text-gray-400 line-through text-base md:text-lg mb-1">De R$ 597,00</p>
-              <p className="font-playfair text-4xl sm:text-5xl md:text-6xl text-wine font-bold mb-2">12x R$ 29,70</p>
-              <p className="text-xs md:text-sm text-gray-500 mb-6 md:mb-8">ou R$ 297,00 à vista</p>
+            <div className="w-full lg:w-1/2 text-center pt-2 lg:pt-0 relative z-10 flex flex-col items-center">
+              <div className="inline-flex items-center gap-2 bg-green-50 text-green-700 font-bold text-xs md:text-sm px-4 py-1.5 rounded-full mb-4 border border-green-200 shadow-sm">
+                <TrendingUp size={16} />
+                Você economiza R$ 300,00
+              </div>
+              <p className="text-gray-500 line-through text-sm md:text-base mb-1">De R$ 597,00 por apenas</p>
+              <p className="font-playfair text-5xl sm:text-6xl md:text-7xl text-wine font-bold mb-2 tracking-tight flex items-baseline justify-center gap-1">
+                <span className="text-2xl md:text-3xl font-dmsans font-medium text-wine/80">12x</span>
+                29<span className="text-3xl md:text-4xl">,70</span>
+              </p>
+              <p className="text-xs md:text-sm text-gray-500 mb-8 font-medium">ou R$ 297,00 à vista</p>
               
-              <div className="bg-cream/50 p-3 md:p-4 rounded-lg mb-6 md:mb-8 inline-block border border-gold/20">
-                <p className="text-[10px] md:text-xs text-wine font-bold mb-2 md:mb-3 uppercase tracking-widest">A oferta encerra em:</p>
-                <div className="flex justify-center gap-3 md:gap-4 font-playfair text-2xl md:text-3xl text-gold font-bold">
-                  <div className="flex flex-col items-center"><span className="w-10 md:w-12">{String(Math.floor(timeLeft / 60)).padStart(2, '0')}</span><span className="text-[8px] md:text-[9px] font-dmsans text-gray-500 uppercase tracking-widest mt-1">Min</span></div>
-                  <span className="text-wine/30">:</span>
-                  <div className="flex flex-col items-center"><span className="w-10 md:w-12">{String(timeLeft % 60).padStart(2, '0')}</span><span className="text-[8px] md:text-[9px] font-dmsans text-gray-500 uppercase tracking-widest mt-1">Seg</span></div>
+              <div className="bg-cream/80 p-4 rounded-2xl mb-8 inline-block border border-gold/30 shadow-inner w-full max-w-xs relative overflow-hidden">
+                <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[#C9A84C]/20 via-[#C9A84C] to-[#C9A84C]/20"></div>
+                <p className="text-[10px] md:text-xs text-wine font-bold mb-3 uppercase tracking-widest">A oferta encerra em:</p>
+                <div className="flex justify-center gap-4 font-playfair text-3xl text-gold font-bold">
+                  <div className="flex flex-col items-center">
+                    <span className="w-12 md:w-14 bg-white rounded-lg shadow-sm py-1.5 border border-gold/10">{String(Math.floor(timeLeft / 60)).padStart(2, '0')}</span>
+                    <span className="text-[9px] font-dmsans text-gray-500 uppercase tracking-widest mt-2 font-bold">Min</span>
+                  </div>
+                  <span className="text-wine/30 py-1.5 animate-pulse">:</span>
+                  <div className="flex flex-col items-center">
+                    <span className="w-12 md:w-14 bg-white rounded-lg shadow-sm py-1.5 border border-gold/10">{String(timeLeft % 60).padStart(2, '0')}</span>
+                    <span className="text-[9px] font-dmsans text-gray-500 uppercase tracking-widest mt-2 font-bold">Seg</span>
+                  </div>
                 </div>
               </div>
 
               <button 
                 onClick={() => document.getElementById('pricing')?.scrollIntoView({ behavior: 'smooth' })} 
-                className="w-full bg-gold text-white font-bold text-xs md:text-sm tracking-widest uppercase px-6 md:px-8 py-4 rounded-sm shadow-lg hover:bg-wine transition-colors duration-300"
+                className="w-full bg-gradient-to-r from-[#C9A84C] to-[#b5953f] text-white font-black text-sm md:text-base tracking-widest uppercase px-6 md:px-8 py-5 rounded-xl shadow-[0_10px_30px_rgba(201,168,76,0.4)] hover:scale-[1.02] hover:shadow-[0_15px_40px_rgba(201,168,76,0.5)] transition-all duration-300 group flex items-center justify-center gap-3"
               >
-                Quero me inscrever agora
+                QUERO ME INSCREVER AGORA
+                <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
               </button>
+            </div>
             </div>
           </motion.div>
         </div>
       </section>
 
       {/* Animated Social Proof Bar */}
-      <div className="bg-wine py-5 overflow-hidden border-y border-gold/30 relative">
-        <div className="flex whitespace-nowrap animate-[scroll_20s_linear_infinite] w-[200%]">
+      <motion.div 
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6, delay: 0.2 }}
+        className="bg-wine py-4 md:py-5 overflow-hidden border-y border-gold/30 relative flex"
+      >
+        <div className="flex w-max animate-[scroll_30s_linear_infinite]">
           {[...Array(4)].map((_, i) => (
-            <div key={i} className="flex gap-16 items-center justify-around w-1/2 px-8">
-              <span className="text-cream font-bold text-sm md:text-base flex items-center gap-3 tracking-widest"><Users className="text-gold" size={20}/> +500 ALUNAS</span>
-              <span className="text-cream font-bold text-sm md:text-base flex items-center gap-3 tracking-widest"><Star className="text-gold" size={20} fill="currentColor"/> 4.9 ESTRELAS</span>
-              <span className="text-cream font-bold text-sm md:text-base flex items-center gap-3 tracking-widest"><Heart className="text-gold" size={20} fill="currentColor"/> 98% SATISFAÇÃO</span>
+            <div key={i} className="flex gap-8 md:gap-16 items-center px-4 md:px-8">
+              <span className="text-cream font-bold text-xs md:text-sm lg:text-base flex items-center gap-2 md:gap-3 tracking-widest"><Users className="text-gold" size={18}/> +500 ALUNAS</span>
+              <span className="text-cream font-bold text-xs md:text-sm lg:text-base flex items-center gap-2 md:gap-3 tracking-widest"><Star className="text-gold" size={18} fill="currentColor"/> 4.9 ESTRELAS</span>
+              <span className="text-cream font-bold text-xs md:text-sm lg:text-base flex items-center gap-2 md:gap-3 tracking-widest"><Heart className="text-gold" size={18} fill="currentColor"/> 98% SATISFAÇÃO</span>
             </div>
           ))}
         </div>
-      </div>
+      </motion.div>
 
       {/* Promises/Transformation */}
       <section className="py-24 bg-white bg-pattern relative overflow-hidden">

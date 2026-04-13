@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { CheckCircle2, Star, BookOpen, Users, ChevronDown, ShieldCheck, CreditCard, Smartphone, ArrowRight, Heart, TrendingUp, Sparkles, Flower2, Crown, Gem, Palette, Camera, Scissors, Droplets, Leaf, Sun, XCircle, Check, AlertTriangle, Store } from 'lucide-react';
+import { CheckCircle2, Star, BookOpen, Users, ChevronDown, ShieldCheck, CreditCard, Smartphone, ArrowRight, Heart, TrendingUp, Sparkles, Flower2, Crown, Gem, Palette, Camera, Scissors, Droplets, Leaf, Sun, XCircle, Check, AlertTriangle, Store, Quote } from 'lucide-react';
 
 const MODULES = [
   { icon: Sparkles, title: "Módulo 1: Introdução e Nossa História", content: "Conheça a trajetória da D'Flores e o propósito de transformar eventos em experiências inesquecíveis com afeto e criatividade." },
@@ -117,7 +117,7 @@ const Curso: React.FC = () => {
       </div>
 
       {/* Hero */}
-      <section id="hero" className="relative bg-black pt-12 pb-20 lg:pt-24 lg:pb-32 overflow-hidden min-h-screen flex flex-col justify-center">
+      <section id="hero" className="relative bg-black pt-6 pb-20 lg:pt-24 lg:pb-32 overflow-hidden min-h-screen flex flex-col justify-center">
         {/* Background Image */}
         <div className="absolute inset-0 z-0">
           <img src="https://i.imgur.com/JvXeAtg.jpeg" alt="Background" className="w-full h-full object-cover opacity-50" />
@@ -131,7 +131,7 @@ const Curso: React.FC = () => {
           ))}
         </div>
         
-        <div className="container mx-auto px-4 md:px-6 max-w-7xl relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-8 items-center pt-8 lg:pt-0">
+        <div className="container mx-auto px-4 md:px-6 max-w-7xl relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-8 items-center pt-2 lg:pt-0">
           
           {/* Left Column: Text Content */}
           <motion.div
@@ -144,7 +144,7 @@ const Curso: React.FC = () => {
             <motion.div 
               animate={{ y: [0, -10, 0] }}
               transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
-              className="relative flex items-center justify-center lg:justify-start mb-8 md:mb-12 w-full max-w-[200px] sm:max-w-[240px] md:max-w-[280px] self-center lg:self-start"
+              className="relative flex items-center justify-center lg:justify-start mb-4 md:mb-8 w-full max-w-[180px] sm:max-w-[200px] md:max-w-[240px] self-center lg:self-start"
             >
               {/* Soft glow behind logo */}
               <div className="absolute inset-0 bg-gold/20 blur-[60px] rounded-full"></div>
@@ -675,6 +675,76 @@ const Curso: React.FC = () => {
         </div>
       </section>
 
+      {/* Testimonials */}
+      <section className="py-24 bg-[#111] text-white relative overflow-hidden">
+        {/* Decorative background elements */}
+        <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
+          <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] rounded-full bg-[#7B1F4A]/10 blur-[100px]"></div>
+          <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] rounded-full bg-[#C9A84C]/10 blur-[100px]"></div>
+        </div>
+        
+        <div className="container mx-auto px-6 max-w-7xl relative z-10 mb-16">
+          <div className="text-center">
+            <motion.span 
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="text-[#C9A84C] text-sm font-bold tracking-widest uppercase mb-4 block"
+            >
+              O que dizem nossas alunas
+            </motion.span>
+            <motion.h2 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="font-playfair text-3xl md:text-5xl text-white font-bold mb-6"
+            >
+              Histórias de Sucesso
+            </motion.h2>
+            <motion.div 
+              initial={{ width: 0 }}
+              whileInView={{ width: 80 }}
+              viewport={{ once: true }}
+              className="h-1 bg-[#C9A84C] mx-auto"
+            ></motion.div>
+          </div>
+        </div>
+        
+        {/* Marquee Container */}
+        <div className="flex w-max animate-[scroll_40s_linear_infinite] hover:[animation-play-state:paused]">
+          {[...Array(2)].map((_, i) => (
+            <div key={i} className="flex gap-6 px-3">
+              {[
+                { name: "Mariana Silva", city: "São Paulo, SP", text: "O curso abriu minha mente! Antes eu tinha medo de cobrar, hoje tenho segurança no meu trabalho e agenda cheia.", img: "https://i.pravatar.cc/150?img=1" },
+                { name: "Camila Costa", city: "Belo Horizonte, MG", text: "As técnicas de amarração e conservação mudaram o jogo para mim. Meus arranjos duram muito mais e os clientes elogiam sempre.", img: "https://i.pravatar.cc/150?img=5" },
+                { name: "Juliana Mendes", city: "Curitiba, PR", text: "Comecei do zero, na sala de casa. Hoje já atendo casamentos e montei meu próprio ateliê. Gratidão eterna!", img: "https://i.pravatar.cc/150?img=9" },
+                { name: "Fernanda Lima", city: "Rio de Janeiro, RJ", text: "A didática é incrível. O módulo de precificação pagou o curso logo no meu primeiro evento após as aulas.", img: "https://i.pravatar.cc/150?img=10" },
+                { name: "Amanda Ribeiro", city: "Goiânia, GO", text: "Sempre sonhei em trabalhar com flores, mas achava que era dom. O curso me provou que é técnica e dedicação.", img: "https://i.pravatar.cc/150?img=16" },
+                { name: "Beatriz Souza", city: "Salvador, BA", text: "O suporte é maravilhoso. Me senti pegada pela mão do início ao fim. As aulas são muito bem gravadas.", img: "https://i.pravatar.cc/150?img=20" }
+              ].map((test, j) => (
+                <div 
+                  key={j} 
+                  className="w-[320px] md:w-[400px] shrink-0 bg-white/5 backdrop-blur-sm p-8 rounded-2xl border border-white/10 relative flex flex-col hover:bg-white/10 transition-colors duration-300"
+                >
+                  <Quote className="absolute top-6 right-6 text-[#C9A84C]/20" size={48} />
+                  <div className="flex gap-1 text-[#C9A84C] mb-6 relative z-10">
+                    {[...Array(5)].map((_, k) => <Star key={k} size={16} fill="currentColor" />)}
+                  </div>
+                  <p className="text-gray-300 italic mb-8 leading-relaxed relative z-10 flex-grow">"{test.text}"</p>
+                  <div className="flex items-center gap-4 mt-auto relative z-10">
+                    <img src={test.img} alt={test.name} className="w-12 h-12 rounded-full object-cover border-2 border-[#C9A84C]" />
+                    <div>
+                      <p className="font-bold text-white">{test.name}</p>
+                      <p className="text-xs text-gray-400 uppercase tracking-wider mt-1">{test.city}</p>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          ))}
+        </div>
+      </section>
+
       {/* Course Content */}
       <section className="py-24 bg-cream relative overflow-hidden">
         {/* Decorative Floral SVG */}
@@ -800,58 +870,7 @@ const Curso: React.FC = () => {
         </div>
       </section>
 
-      {/* Testimonials */}
-      <section className="py-24 bg-cream bg-pattern">
-        <div className="container mx-auto px-6 max-w-6xl">
-          <div className="text-center mb-16">
-            <motion.h2 
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="font-playfair text-3xl md:text-5xl text-wine font-bold mb-6"
-            >
-              Histórias de Sucesso
-            </motion.h2>
-            <motion.div 
-              initial={{ width: 0 }}
-              whileInView={{ width: 80 }}
-              viewport={{ once: true }}
-              className="h-1 bg-gold mx-auto"
-            ></motion.div>
-          </div>
-          
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {[
-              { name: "Mariana Silva", city: "São Paulo, SP", text: "O curso abriu minha mente! Antes eu tinha medo de cobrar, hoje tenho segurança no meu trabalho e agenda cheia.", img: "https://i.pravatar.cc/150?img=1" },
-              { name: "Camila Costa", city: "Belo Horizonte, MG", text: "As técnicas de amarração e conservação mudaram o jogo para mim. Meus arranjos duram muito mais e os clientes elogiam sempre.", img: "https://i.pravatar.cc/150?img=5" },
-              { name: "Juliana Mendes", city: "Curitiba, PR", text: "Comecei do zero, na sala de casa. Hoje já atendo casamentos e montei meu próprio ateliê. Gratidão eterna!", img: "https://i.pravatar.cc/150?img=9" },
-              { name: "Fernanda Lima", city: "Rio de Janeiro, RJ", text: "A didática é incrível. O módulo de precificação pagou o curso logo no meu primeiro evento após as aulas.", img: "https://i.pravatar.cc/150?img=10" },
-              { name: "Amanda Ribeiro", city: "Goiânia, GO", text: "Sempre sonhei em trabalhar com flores, mas achava que era dom. O curso me provou que é técnica e dedicação.", img: "https://i.pravatar.cc/150?img=16" }
-            ].map((test, i) => (
-              <motion.div 
-                initial={{ opacity: 0, scale: 0.9, y: 30 }}
-                whileInView={{ opacity: 1, scale: 1, y: 0 }}
-                viewport={{ once: true, margin: "-50px" }}
-                transition={{ delay: i * 0.1, duration: 0.5 }}
-                key={i} 
-                className="bg-white p-8 rounded-2xl shadow-lg border border-gold/10 relative hover:-translate-y-2 transition-transform duration-300"
-              >
-                <div className="flex gap-1 text-gold mb-6">
-                  {[...Array(5)].map((_, j) => <Star key={j} size={16} fill="currentColor" />)}
-                </div>
-                <p className="text-gray-600 italic mb-8 leading-relaxed">"{test.text}"</p>
-                <div className="flex items-center gap-4 mt-auto">
-                  <img src={test.img} alt={test.name} className="w-12 h-12 rounded-full object-cover border-2 border-gold/30" />
-                  <div>
-                    <p className="font-bold text-wine">{test.name}</p>
-                    <p className="text-xs text-gray-500 uppercase tracking-wider mt-1">{test.city}</p>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
+
 
       {/* FAQ */}
       <section className="py-24 bg-white bg-pattern">

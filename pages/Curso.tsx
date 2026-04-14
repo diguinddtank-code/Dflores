@@ -3,15 +3,16 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { CheckCircle2, Star, BookOpen, Users, ChevronDown, ShieldCheck, CreditCard, Smartphone, ArrowRight, Heart, TrendingUp, Sparkles, Flower2, Crown, Gem, Palette, Camera, Scissors, Droplets, Leaf, Sun, XCircle, Check, AlertTriangle, Store, Quote } from 'lucide-react';
 
 const MODULES = [
-  { icon: Sparkles, title: "Módulo 1: Introdução e Nossa História", content: "Conheça a trajetória da D'Flores e o propósito de transformar eventos em experiências inesquecíveis com afeto e criatividade." },
-  { icon: Flower2, title: "Módulo 2: A Magia e Linguagem das Flores", content: "Entenda como as flores se comunicam, a energia que transmitem e como escolher a flor certa para despertar as emoções desejadas no seu cliente." },
-  { icon: Palette, title: "Módulo 3: Formas e Flores", content: "Aprenda a classificar e utilizar flores redondas, espigadas, multidirecionais, tropicais e folhagens para criar volume, movimento e pontos focais." },
-  { icon: Sun, title: "Módulo 4: Sazonalidade e Época das Flores", content: "Domine o calendário floral. Saiba como lidar com a disponibilidade das espécies, fazer substituições inteligentes e orientar seus clientes." },
-  { icon: Droplets, title: "Módulo 5: Compra, Conservação e Armazenamento", content: "Os segredos para escolher as melhores flores no fornecedor, técnicas de hidratação, corte em bisel e prevenção de bactérias para máxima durabilidade." },
-  { icon: Scissors, title: "Módulo 6: Ferramentas Indispensáveis", content: "O kit completo do florista profissional: do podão e espuma floral até a tela de galinheiro e kenzan. Tudo o que você precisa para começar." },
-  { icon: Crown, title: "Módulo 7: Amarração e Preparo do Floral", content: "Técnicas corretas para hidratar a espuma floral sem criar bolhas de ar e métodos de amarração seguros para estruturas de grande porte." },
-  { icon: Gem, title: "Módulo 8: Teoria das Cores e Círculo Cromático", content: "Crie paletas harmoniosas usando esquemas monocromáticos, análogos, complementares e tríades. O segredo para arranjos visualmente impactantes." },
-  { icon: Star, title: "Módulo 9: Estilos Florais, Prática e Precificação", content: "Aprenda na prática os estilos Formal, Assimétrico, Vegetativo e Ikebana. Além disso, uma aula completa sobre como precificar seus arranjos com lucro e segurança." },
+  { icon: Palette, title: "Módulo 1: Cores e Harmonia", content: "Domine a Paleta de Cores e os Esquemas/Harmonia de Cores. O segredo para criar arranjos visualmente magnéticos e com a sua assinatura." },
+  { icon: Flower2, title: "Módulo 2: Botânica Aplicada", content: "Entenda as Formas de cada espécie e a Época das Flores (sazonalidade) para fazer as melhores escolhas o ano todo." },
+  { icon: Droplets, title: "Módulo 3: Logística Floral", content: "Os segredos da Compra e Conservação das Flores. Aprenda a escolher no fornecedor e manter as flores impecáveis por muito mais tempo." },
+  { icon: Scissors, title: "Módulo 4: O Arsenal do Florista", content: "Conheça todas as Ferramentas Indispensáveis para o florista profissional trabalhar com agilidade e perfeição." },
+  { icon: Crown, title: "Módulo 5: A Base de Tudo", content: "Técnicas corretas de Amarração e Preparo do Floral. A estrutura segura que todo grande arranjo precisa ter." },
+  { icon: Sparkles, title: "Módulo 6: Mão na Massa", content: "Prática de Como Montar seus primeiros arranjos e a criação passo a passo da clássica Jardineira Mesa Família." },
+  { icon: Star, title: "Módulo 7: Estilos Clássicos", content: "Domine a elegância do Estilo Floral Formal e a naturalidade orgânica do Estilo Floral Vegetativo." },
+  { icon: Leaf, title: "Módulo 8: O Floral Moderno", content: "Aprenda o queridinho das noivas: Estilo Floral Assimétrico (Desconstruído) e crie arranjos modernos com a Técnica de Tela." },
+  { icon: Sun, title: "Módulo 9: Minimalismo Oriental", content: "Mergulhe na arte dos Estilos Florais Ikebana e descubra o segredo da Técnica do Ikebana sem Kenzan." },
+  { icon: TrendingUp, title: "Módulo 10: Precificação e Negócios", content: "Aprenda a cobrar o preço justo pelo seu trabalho, usar a planilha automática e se posicionar como uma florista de alto padrão." }
 ];
 
 const FAQS = [
@@ -363,20 +364,86 @@ const Curso: React.FC = () => {
           <div className="grid md:grid-cols-2 gap-6 md:gap-8">
             {[
               {
+                painTitle: "A Frustração do Básico",
                 pain: "Cursos superficiais que só ensinam o básico e escondem os verdadeiros segredos das grandes decorações.",
-                solution: "Técnicas de alto padrão reveladas passo a passo, sem esconder nada, do básico às estruturas gigantes."
+                solTitle: "O Segredo dos Grandes Ateliês",
+                solution: "Técnicas de alto padrão reveladas passo a passo, sem esconder nada, do básico às estruturas gigantes.",
+                painIcon: (
+                  <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" className="text-red-400 opacity-40">
+                    <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20" />
+                    <rect x="10" y="8" width="4" height="5" rx="1" />
+                    <path d="M12 11v1" />
+                  </svg>
+                ),
+                solIcon: (
+                  <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" className="text-[#C9A84C] opacity-90">
+                    <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" />
+                    <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" />
+                    <path d="M12 5l1-1 1 1-1 1zM16 2l1-1 1 1-1 1zM8 2l1-1 1 1-1 1z" />
+                  </svg>
+                )
               },
               {
+                painTitle: "Pagando para Trabalhar?",
                 pain: "Insegurança na hora de cobrar, sentindo que está sempre pagando para trabalhar ou perdendo clientes.",
-                solution: "Planilha de precificação automática e estratégias de posicionamento para lucrar com segurança."
+                solTitle: "Lucro com Segurança",
+                solution: "Planilha de precificação automática e estratégias de posicionamento para lucrar com segurança.",
+                painIcon: (
+                  <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" className="text-red-400 opacity-40">
+                    <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+                    <path d="M2 2l20 20" strokeWidth="1" strokeDasharray="4 4" />
+                  </svg>
+                ),
+                solIcon: (
+                  <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" className="text-[#C9A84C] opacity-90">
+                    <path d="M3 3v18h18" />
+                    <path d="M7 14l4-4 4 4 6-6" />
+                    <path d="M18 8h3v3" />
+                  </svg>
+                )
               },
               {
+                painTitle: "O Pesadelo da Flor Murcha",
                 pain: "Arranjos que murcham rápido no meio do evento por falta de preparo e hidratação correta.",
-                solution: "Segredos de conservação, limpeza e hidratação para manter as flores impecáveis por muito mais tempo."
+                solTitle: "Durabilidade de Alto Padrão",
+                solution: "Segredos de conservação, limpeza e hidratação para manter as flores impecáveis por muito mais tempo.",
+                painIcon: (
+                  <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" className="text-red-400 opacity-40">
+                    <path d="M14 22c-2-4-2-8 0-12" />
+                    <circle cx="16" cy="8" r="3" />
+                    <path d="M16 5a3 3 0 0 0-3 3M19 8a3 3 0 0 0-3-3M16 11a3 3 0 0 0 3-3M13 8a3 3 0 0 0 3 3" />
+                    <path d="M14 16s-3 1-4 4" />
+                  </svg>
+                ),
+                solIcon: (
+                  <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" className="text-[#C9A84C] opacity-90">
+                    <path d="M12 22V12" />
+                    <circle cx="12" cy="8" r="3" />
+                    <path d="M12 5a3 3 0 0 0-3 3M15 8a3 3 0 0 0-3-3M12 11a3 3 0 0 0 3-3M9 8a3 3 0 0 0 3 3" />
+                    <path d="M12 16s-3 1-4 4M12 16s3 1 4 4" />
+                    <path d="M18 4c0 1.5-1.5 3-1.5 3S15 5.5 15 4a1.5 1.5 0 0 1 3 0z" />
+                  </svg>
+                )
               },
               {
+                painTitle: "Decorações Sem Identidade",
                 pain: "Dificuldade em combinar cores e texturas, resultando em decorações sem harmonia e sem identidade.",
-                solution: "Teoria das cores aplicada na prática para criar arranjos de cair o queixo com a sua assinatura."
+                solTitle: "Assinatura Visual Inconfundível",
+                solution: "Teoria das cores aplicada na prática para criar arranjos de cair o queixo com a sua assinatura.",
+                painIcon: (
+                  <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" className="text-red-400 opacity-40">
+                    <rect x="3" y="3" width="7" height="7" transform="rotate(15 6.5 6.5)" />
+                    <circle cx="17" cy="7" r="4" transform="translate(0 2)" />
+                    <polygon points="12,14 18,22 6,22" transform="rotate(-15 12 18)" />
+                  </svg>
+                ),
+                solIcon: (
+                  <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" className="text-[#C9A84C] opacity-90">
+                    <circle cx="9" cy="9" r="6" />
+                    <circle cx="15" cy="9" r="6" />
+                    <circle cx="12" cy="14.2" r="6" />
+                  </svg>
+                )
               }
             ].map((item, i) => (
               <motion.div 
@@ -390,11 +457,14 @@ const Curso: React.FC = () => {
                 {/* Pain (Top) */}
                 <div className="bg-white p-6 md:p-8 relative overflow-hidden">
                   <div className="absolute top-0 left-0 w-1 h-full bg-red-400/50"></div>
-                  <div className="flex items-center gap-3 mb-4">
-                    <div className="w-8 h-8 rounded-full bg-red-50 flex items-center justify-center shrink-0">
-                      <XCircle className="text-red-400" size={16} />
+                  <div className="flex items-center justify-between mb-4">
+                    <div className="flex items-center gap-3">
+                      <div className="w-8 h-8 rounded-full bg-red-50 flex items-center justify-center shrink-0">
+                        <XCircle className="text-red-400" size={16} />
+                      </div>
+                      <span className="font-bold text-xs md:text-sm text-gray-400 uppercase tracking-widest">{item.painTitle}</span>
                     </div>
-                    <span className="font-bold text-xs md:text-sm text-gray-400 uppercase tracking-widest">O Problema</span>
+                    {item.painIcon}
                   </div>
                   <p className="text-gray-700 font-medium text-sm md:text-base leading-relaxed">
                     {item.pain}
@@ -403,17 +473,18 @@ const Curso: React.FC = () => {
                 
                 {/* Solution (Bottom) */}
                 <div className="bg-[#7B1F4A] p-6 md:p-8 relative overflow-hidden flex-grow">
-                  <div className="absolute inset-0 opacity-[0.03] pointer-events-none">
-                    <svg width="100" height="100" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" strokeWidth="1">
-                      <path d="M12 22c4-4 8-6 8-12a8 8 0 0 0-16 0c0 6 4 8 8 12z"/>
-                    </svg>
+                  <div className="absolute inset-0 opacity-[0.05] pointer-events-none flex items-center justify-center">
+                    <img src="https://i.imgur.com/APXOSOf.png" alt="Logo" className="w-48 h-48 object-contain" />
                   </div>
                   <div className="absolute top-0 left-0 w-1 h-full bg-[#C9A84C]"></div>
-                  <div className="flex items-center gap-3 mb-4 relative z-10">
-                    <div className="w-8 h-8 rounded-full bg-[#C9A84C]/20 flex items-center justify-center shrink-0">
-                      <Check className="text-[#C9A84C]" size={16} strokeWidth={3} />
+                  <div className="flex items-center justify-between mb-4 relative z-10">
+                    <div className="flex items-center gap-3">
+                      <div className="w-8 h-8 rounded-full bg-[#C9A84C]/20 flex items-center justify-center shrink-0">
+                        <Check className="text-[#C9A84C]" size={16} strokeWidth={3} />
+                      </div>
+                      <span className="font-bold text-xs md:text-sm text-[#C9A84C] uppercase tracking-widest">{item.solTitle}</span>
                     </div>
-                    <span className="font-bold text-xs md:text-sm text-[#C9A84C] uppercase tracking-widest">A Solução D'Flores</span>
+                    {item.solIcon}
                   </div>
                   <p className="text-[#FDF8F5]/90 font-light text-sm md:text-base leading-relaxed relative z-10">
                     {item.solution}
@@ -427,26 +498,12 @@ const Curso: React.FC = () => {
 
       {/* Promises/Transformation */}
       <section className="py-24 bg-white bg-pattern relative overflow-hidden">
-        {/* Decorative Floral SVG */}
+        {/* Decorative Logo Watermarks */}
         <div className="absolute top-0 left-0 opacity-[0.03] pointer-events-none -translate-x-1/4 -translate-y-1/4">
-          <svg width="400" height="400" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" strokeWidth="0.5" strokeLinecap="round" strokeLinejoin="round">
-            <path d="M12 22c4-4 8-6 8-12a8 8 0 0 0-16 0c0 6 4 8 8 12z"/>
-            <path d="M12 22v-6"/>
-            <path d="M12 16a4 4 0 0 0 4-4"/>
-            <path d="M12 16a4 4 0 0 1-4-4"/>
-            <path d="M12 12a4 4 0 0 0 4-4"/>
-            <path d="M12 12a4 4 0 0 1-4-4"/>
-          </svg>
+          <img src="https://i.imgur.com/APXOSOf.png" alt="Logo" className="w-[400px] h-[400px] object-contain grayscale" />
         </div>
-        <div className="absolute bottom-0 right-0 opacity-[0.03] pointer-events-none translate-x-1/4 translate-y-1/4 rotate-180">
-          <svg width="400" height="400" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" strokeWidth="0.5" strokeLinecap="round" strokeLinejoin="round">
-            <path d="M12 22c4-4 8-6 8-12a8 8 0 0 0-16 0c0 6 4 8 8 12z"/>
-            <path d="M12 22v-6"/>
-            <path d="M12 16a4 4 0 0 0 4-4"/>
-            <path d="M12 16a4 4 0 0 1-4-4"/>
-            <path d="M12 12a4 4 0 0 0 4-4"/>
-            <path d="M12 12a4 4 0 0 1-4-4"/>
-          </svg>
+        <div className="absolute bottom-0 right-0 opacity-[0.03] pointer-events-none translate-x-1/4 translate-y-1/4">
+          <img src="https://i.imgur.com/APXOSOf.png" alt="Logo" className="w-[400px] h-[400px] object-contain grayscale" />
         </div>
 
         <div className="container mx-auto px-6 max-w-6xl relative z-10">
@@ -747,16 +804,9 @@ const Curso: React.FC = () => {
 
       {/* Course Content */}
       <section className="py-24 bg-cream relative overflow-hidden">
-        {/* Decorative Floral SVG */}
-        <div className="absolute top-1/2 left-0 opacity-[0.04] pointer-events-none -translate-x-1/2 -translate-y-1/2">
-          <svg width="500" height="500" viewBox="0 0 24 24" fill="none" stroke="#7B1F4A" strokeWidth="0.5" strokeLinecap="round" strokeLinejoin="round">
-            <path d="M12 22c4-4 8-6 8-12a8 8 0 0 0-16 0c0 6 4 8 8 12z"/>
-            <path d="M12 22v-6"/>
-            <path d="M12 16a4 4 0 0 0 4-4"/>
-            <path d="M12 16a4 4 0 0 1-4-4"/>
-            <path d="M12 12a4 4 0 0 0 4-4"/>
-            <path d="M12 12a4 4 0 0 1-4-4"/>
-          </svg>
+        {/* Decorative Logo Watermark */}
+        <div className="absolute top-1/2 left-0 opacity-[0.03] pointer-events-none -translate-x-1/3 -translate-y-1/2">
+          <img src="https://i.imgur.com/APXOSOf.png" alt="Logo" className="w-[600px] h-[600px] object-contain grayscale" />
         </div>
 
         <div className="container mx-auto px-6 max-w-4xl relative z-10">
@@ -822,50 +872,118 @@ const Curso: React.FC = () => {
         </div>
       </section>
 
-      {/* About Teacher */}
-      <section className="py-24 bg-white">
-        <div className="container mx-auto px-6 max-w-5xl">
-          <div className="flex flex-col md:flex-row gap-16 items-center">
-            <motion.div 
-              initial={{ opacity: 0, scale: 0.9, rotate: -5 }}
-              whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.8, ease: "easeOut" }}
-              className="md:w-1/2 relative w-full max-w-md mx-auto"
-            >
-              <div className="absolute inset-0 bg-gold rounded-t-full transform translate-x-4 translate-y-4"></div>
-              <img src="https://i.imgur.com/dE68d39.jpeg" alt="Professora" className="relative z-10 w-full aspect-[4/5] object-cover rounded-t-full border-4 border-white shadow-xl" />
-            </motion.div>
-            <motion.div 
-              initial={{ opacity: 0, x: 50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-              className="md:w-1/2"
-            >
-              <h2 className="font-playfair text-3xl md:text-5xl text-wine font-bold mb-8">Sua Mentora</h2>
-              <p className="text-gray-600 text-lg mb-6 leading-relaxed">
-                Com mais de 10 anos de experiência no mercado de eventos de luxo, transformei minha paixão por flores em uma empresa referência em decoração monumental.
-              </p>
-              <p className="text-gray-600 text-lg mb-10 leading-relaxed">
-                Minha missão agora é encurtar o seu caminho, revelando todos os segredos, técnicas e estratégias que me fizeram chegar até aqui, para que você também possa viver da sua arte.
-              </p>
-              
-              <div className="grid grid-cols-3 gap-4 text-center border-t border-gray-100 pt-8">
-                <div>
-                  <p className="font-playfair text-3xl md:text-4xl text-gold font-bold mb-2">10+</p>
-                  <p className="text-[10px] md:text-xs text-wine font-bold uppercase tracking-widest">Anos de Exp.</p>
+      {/* About Teacher - Editorial Premium */}
+      <section className="py-24 md:py-32 bg-[#FAF9F6] relative overflow-hidden">
+        {/* Background Decorative Elements */}
+        <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-[#C9A84C]/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3 pointer-events-none"></div>
+        <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-[#7B1F4A]/5 rounded-full blur-3xl translate-y-1/3 -translate-x-1/3 pointer-events-none"></div>
+        
+        <div className="container mx-auto px-6 max-w-7xl relative z-10">
+          <div className="flex flex-col lg:flex-row gap-16 lg:gap-24 items-center">
+            
+            {/* Left: Image Composition */}
+            <div className="w-full lg:w-1/2 relative max-w-md lg:max-w-none mx-auto">
+              {/* Main Image */}
+              <motion.div 
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, ease: "easeOut" }}
+                className="relative z-10 w-[85%] lg:w-[80%] aspect-[3/4] rounded-t-full rounded-bl-full overflow-hidden border-8 border-white shadow-2xl"
+              >
+                <div className="absolute inset-0 bg-black/10 z-10"></div>
+                <img src="https://i.imgur.com/dE68d39.jpeg" alt="Sua Mentora" className="w-full h-full object-cover" />
+              </motion.div>
+
+              {/* Secondary Overlapping Image */}
+              <motion.div 
+                initial={{ opacity: 0, x: 50, y: 50 }}
+                whileInView={{ opacity: 1, x: 0, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
+                className="absolute bottom-4 -right-4 lg:bottom-10 lg:-right-4 w-[55%] aspect-square rounded-full overflow-hidden border-8 border-white shadow-2xl z-20"
+              >
+                <img src="https://i.imgur.com/lMFsQty.jpeg" alt="Detalhe Floral" className="w-full h-full object-cover" />
+              </motion.div>
+
+              {/* Decorative Spinning Badge */}
+              <motion.div
+                initial={{ opacity: 0, scale: 0 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.6, type: "spring" }}
+                className="absolute top-4 right-0 lg:top-10 lg:-right-8 w-28 h-28 lg:w-36 lg:h-36 bg-[#7B1F4A] rounded-full flex items-center justify-center text-center p-2 shadow-xl z-30"
+              >
+                <svg viewBox="0 0 100 100" className="absolute inset-0 w-full h-full text-[#C9A84C] animate-spin" style={{ animationDuration: '20s' }}>
+                  <path id="textPath" d="M 50, 50 m -37, 0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0" fill="transparent" />
+                  <text fontSize="10.5" fontWeight="bold" fill="currentColor" letterSpacing="1.5">
+                    <textPath href="#textPath" startOffset="0%">
+                      • MÉTODO D'FLORES • EXCELÊNCIA FLORAL
+                    </textPath>
+                  </text>
+                </svg>
+                <Crown className="text-[#C9A84C] relative z-10" size={32} strokeWidth={1.5} />
+              </motion.div>
+            </div>
+
+            {/* Right: Copy & Content */}
+            <div className="w-full lg:w-1/2">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+              >
+                <div className="flex items-center gap-3 mb-6">
+                  <div className="h-[1px] w-12 bg-[#C9A84C]"></div>
+                  <span className="text-[#C9A84C] font-bold tracking-[0.2em] uppercase text-xs md:text-sm">A Mente por Trás do Método</span>
                 </div>
-                <div>
-                  <p className="font-playfair text-3xl md:text-4xl text-gold font-bold mb-2">500+</p>
-                  <p className="text-[10px] md:text-xs text-wine font-bold uppercase tracking-widest">Alunas</p>
+                
+                <h2 className="font-playfair text-4xl md:text-5xl lg:text-6xl text-[#7B1F4A] font-bold mb-6 leading-[1.1]">
+                  Prazer, eu sou a sua <br className="hidden md:block" />
+                  <span className="italic font-light">nova mentora.</span>
+                </h2>
+
+                <div className="relative mb-8 mt-8">
+                  <Quote className="absolute -top-6 -left-4 text-[#C9A84C]/20 rotate-180" size={48} />
+                  <p className="font-playfair text-xl md:text-2xl text-gray-800 italic leading-relaxed pl-6 border-l-2 border-[#C9A84C] relative z-10">
+                    "Não ensino apenas a montar arranjos. Ensino a construir um negócio lucrativo, seguro e inesquecível."
+                  </p>
                 </div>
-                <div>
-                  <p className="font-playfair text-3xl md:text-4xl text-gold font-bold mb-2">1k+</p>
-                  <p className="text-[10px] md:text-xs text-wine font-bold uppercase tracking-widest">Eventos</p>
+
+                <div className="space-y-4 text-gray-600 text-base md:text-lg leading-relaxed mb-10">
+                  <p>
+                    Com mais de 10 anos de trincheira no mercado de eventos de luxo, eu já cometi todos os erros que você pode imaginar. Já perdi dinheiro, já vi arranjo murchar na festa e já cobrei barato por medo de perder o cliente.
+                  </p>
+                  <p>
+                    Transformei minha paixão por flores em uma empresa referência em decoração monumental porque decidi <strong>parar de adivinhar e criar um método</strong>.
+                  </p>
+                  <p>
+                    Minha missão agora é encurtar o seu caminho. Vou te entregar a bússola exata, revelando todos os segredos, técnicas e estratégias que me fizeram chegar até aqui. Você não precisa começar do zero.
+                  </p>
                 </div>
-              </div>
-            </motion.div>
+
+                {/* Stats */}
+                <div className="grid grid-cols-3 gap-4 md:gap-8 border-t border-gray-200 pt-8">
+                  {[
+                    { number: "10+", label: "Anos de Mercado" },
+                    { number: "500+", label: "Alunas Formadas" },
+                    { number: "1k+", label: "Eventos Realizados" }
+                  ].map((stat, i) => (
+                    <motion.div 
+                      key={i}
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: 0.2 + (i * 0.1) }}
+                    >
+                      <p className="font-playfair text-3xl md:text-4xl text-[#C9A84C] font-bold mb-1">{stat.number}</p>
+                      <p className="text-[10px] md:text-xs text-gray-500 font-bold uppercase tracking-widest">{stat.label}</p>
+                    </motion.div>
+                  ))}
+                </div>
+              </motion.div>
+            </div>
+
           </div>
         </div>
       </section>
